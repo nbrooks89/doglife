@@ -1,0 +1,28 @@
+.dropdown{
+    width:200px;
+    font-size: 13px;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    position: relative;
+  }
+  .dropdown .select{
+    width: 100%;
+    
+  background-position:80% center;
+  }
+  
+  .dropdown .select select{
+    background: transparent;
+    line-height: 1;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    font-size: 1em;
+  }
+
+  

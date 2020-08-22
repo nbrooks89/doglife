@@ -1,26 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AllBreeds from "./pages/AllBreeds"
+import Header from "./components/Header"
+import Randomize from "./pages/Randomize"
+import Favorites from "./pages/Favorites"
+import DropDown from "./components/DropDown"
+import { Router, Route, Switch } from "react-router-dom"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
+// const API_KEY = 'f07ac2f8-e658-414a-aff2-971a64483ffe'
+
+class App extends React.Component {
+  state = {
+
+    data: []
+  }
+  setData = (data) => {
+    this.setState({ data: data })
+
+  }
+
+  render() {
+    console.log("STATEDATAAPP", this.state.data)
+    return (
+      <div>
+
+        <Header />
+
+
+        <Route exact path="/" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
+        <Route path="/breeds" render={() => <AllBreeds data={this.state.data} setData={this.setData} />} />
+        <Route path="/Randomize" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
+        <Route path="/Favorites" component={Favorites} />
+
+
+
+      </div>
+
+
+
+
+    );
+  }
 }
 
 export default App;

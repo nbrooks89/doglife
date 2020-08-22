@@ -1,0 +1,19 @@
+.dogBox{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.dogCardBorder{
+    
+    
+        display:flex;
+        width:100%;
+        flex-wrap: wrap;
+        margin:0;
+        justify-content: center;
+        
+      
+      
+      
+}
