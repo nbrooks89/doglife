@@ -1,16 +1,15 @@
 import React from 'react';
 import DogCard from "../components/DogCard"
-import DropDown from "../components/DropDown"
-import "../pages/AllBreeds.css"
-class AllBreeds extends React.Component {
+import "../pages/Randomize.css"
+
+class Randomize extends React.Component {
     state = {
 
-        data: []
     }
 
     handleGetRequest = async () => {
 
-        const response = await fetch("https://api.thedogapi.com/v1/images/search?&order=ASC&limit=1", {
+        const response = await fetch("https://api.thedogapi.com/v1/images/search?&order=ASC&limit=30", {
             method: 'GET',
             header:
                 "x-api-key: f07ac2f8-e658-414a-aff2-971a64483ffe"
@@ -28,35 +27,32 @@ class AllBreeds extends React.Component {
 
     componentDidMount() {
         this.handleGetRequest()
+
     }
 
     render() {
         console.log("STATEDATA", this.state.data)
-
+        console.log(this.props.match)
         return (
             <div>
                 <div className="dogBox">
-                    {this.props.showDogs ? <div>
-                        beagle
-                    </div> : <div>Breeds</div>}
-                    < DropDown data={this.state.data} setData={this.props.setData} setShowDogs={this.props.setShowDogs} />
 
-                    {this.props.showDogs && (<div className="dogCardBorder">
-                        {this.props.data.filter(data => data.breeds.length > 0).slice(0, 15).map(data => {
+                    <div className="dogCardBorder">
+                        {this.props.data.filter(data => data.breeds.length > 0).slice(0, 6).map(data => {
                             console.log("data pic", this.props.data)
                             return (
 
                                 <div>
 
 
-                                    < DogCard showDogs={this.props.showDogs} imgUrl={data.url} name={data.breeds[0].name} />
+                                    < DogCard imgUrl={data.url} name={data.breeds[0].name} />
 
 
                                 </div>
 
                             )
                         })}
-                    </div>)}
+                    </div>
                 </div>
             </div>
 
@@ -64,4 +60,4 @@ class AllBreeds extends React.Component {
     }
 }
 
-export default AllBreeds;
+export default Randomize;

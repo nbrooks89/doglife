@@ -1,0 +1,25 @@
+.dogBox{
+    margin:3rem;
+    /* display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+}
+.dogCardBorder{
+    
+    
+        /* display:flex;
+        width:100%;
+        flex-wrap: wrap;
+        margin:0;
+        justify-content: center; */
+        
+        height:100%;
+       display:grid;
+       grid-template-columns: repeat(auto-fill,minmax(200px,1fr));  
+       align-items: end;
+       grid-gap:  3rem;
+      
+      
+      
+}

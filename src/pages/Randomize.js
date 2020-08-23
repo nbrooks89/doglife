@@ -1,7 +1,8 @@
 import React from 'react';
 import DogCard from "../components/DogCard"
 import DropDown from "../components/DropDown"
-import "../pages/AllBreeds.css"
+import "../pages/Randomize.css"
+import { Link } from "react-router-dom"
 class Randomize extends React.Component {
     state = {
         showDogs: false,
@@ -26,6 +27,7 @@ class Randomize extends React.Component {
 
 
 
+
     componentDidMount() {
         this.handleGetRequest()
     }
@@ -36,18 +38,16 @@ class Randomize extends React.Component {
         return (
             <div>
                 <div className="dogBox">
-                    <div>Breeds</div>
-                    < DropDown data={this.state.data} setData={this.props.setData} />
 
                     <div className="dogCardBorder">
-                        {this.props.data.filter(data => data.breeds.length > 0).slice(0, 15).map(data => {
+                        {this.props.data.filter(data => data.breeds.length > 0).slice(0, 6).map(data => {
                             console.log("data pic", this.props.data)
                             return (
 
                                 <div>
 
 
-                                    < DogCard imgUrl={data.url} name={data.breeds[0].name} />
+                                    <Link to="/DogDetails/id"> < DogCard imgUrl={data.url} name={data.breeds[0].name} /></Link>
 
 
                                 </div>

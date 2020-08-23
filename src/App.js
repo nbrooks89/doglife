@@ -3,8 +3,11 @@ import AllBreeds from "./pages/AllBreeds"
 import Header from "./components/Header"
 import Randomize from "./pages/Randomize"
 import Favorites from "./pages/Favorites"
+import DogDetails from "./pages/DogDetails"
+
+
 import DropDown from "./components/DropDown"
-import { Router, Route, Switch } from "react-router-dom"
+import { Router, Route, Switch, } from "react-router-dom"
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,7 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   state = {
-
+    showDogs: false,
     data: []
   }
   setData = (data) => {
@@ -23,8 +26,14 @@ class App extends React.Component {
 
   }
 
+  setShowDogs = (showDogs) => {
+    this.setState({ showDogs })
+
+  }
+
   render() {
     console.log("STATEDATAAPP", this.state.data)
+
     return (
       <div>
 
@@ -32,9 +41,10 @@ class App extends React.Component {
 
 
         <Route exact path="/" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
-        <Route path="/breeds" render={() => <AllBreeds data={this.state.data} setData={this.setData} />} />
+        <Route path="/breeds" render={() => <AllBreeds data={this.state.data} showDogs={this.state.showDogs} setData={this.setData} setShowDogs={this.setShowDogs} />} />
         <Route path="/Randomize" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
         <Route path="/Favorites" component={Favorites} />
+        <Route path="/Randomize/:id" render={(routerProps) => <DogDetails match={routerProps.match} data={this.state.data} setData={this.setData} />} />
 
 
 

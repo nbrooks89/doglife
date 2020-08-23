@@ -1,13 +1,17 @@
 .dogcard{
-    height: 200px;
-    width: 200px;
+    /* height: 200px; */
+    width: 100%;
+    
   }
  .container1{
-     height:255px;
-     width:230px;
+     height:100%;
+     width:100%;
 
-    display:flex ;
-    justify-content: center;
+     display: grid;
+     align-items: end;
+
+    /* display:flex ;
+    justify-content: flex-end;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; */
  }

@@ -12,6 +12,7 @@ class DogCard extends React.Component {
         return (
             <div className="container1">
                 <img className="dogcard" src={this.props.imgUrl} />
+                {!this.props.showDogs && (<div>{this.props.name}</div>)}
 
             </div>
         );

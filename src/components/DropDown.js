@@ -17,7 +17,7 @@ class DropDown extends React.Component {
     }
     handleChange = async (event) => {
 
-
+        console.log("EVENNNNNNT", event.target.name)
         const response = await fetch(`https://api.thedogapi.com/v1/images/search?order=ASC&limit=20&breed_id=${event.target.value}`, {
             method: 'GET',
             header:
@@ -25,7 +25,9 @@ class DropDown extends React.Component {
 
         })
         const data = await response.json()
+        console.log(data)
         this.props.setData(data)
+        this.props.setShowDogs(true)
 
     }
 
@@ -63,7 +65,7 @@ class DropDown extends React.Component {
                 <div className="dropdown">
                     <div className="select">
                         <select className="dropdown" value={this.state.dogs.value} onChange={this.handleChange}>
-                            {this.state.dogs.map(dog => <option onChange={this.handleChange} key={dog.index} value={dog.id}>
+                            {this.state.dogs.map(dog => <option onChange={this.handleChange} key={dog.index} value={dog.id} name={dog.name}>
                                 {dog.name}
 
                             </option>
