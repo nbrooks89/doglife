@@ -61,7 +61,7 @@ class DropDown extends React.Component {
 
         return (
 
-            <div className="container">
+            <div className="dropContainer">
                 <div className="dropdown">
                     <div className="select">
                         <select className="dropdown" value={this.state.dogs.value} onChange={this.handleChange}>

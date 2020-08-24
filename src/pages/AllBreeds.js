@@ -31,15 +31,23 @@ class AllBreeds extends React.Component {
     }
 
     render() {
-        console.log("STATEDATA", this.state.data)
+
 
         return (
             <div>
-                <div className="dogBox">
-                    {this.props.showDogs ? <div>
-                        beagle
-                    </div> : <div>Breeds</div>}
+                <div className="title">
+                    {this.props.data.filter(data => data.breeds.length > 0).slice(0, 1).map(data => {
+                        console.log("data pic", this.props.data)
+                        return (
+                            this.props.showDogs ? <div>{data.breeds[0].name}</div> : <div>Dog Breeds</div>
+                        )
+                    })}
+
                     < DropDown data={this.state.data} setData={this.props.setData} setShowDogs={this.props.setShowDogs} />
+                </div>
+                <div className="dogBox">
+
+
 
                     {this.props.showDogs && (<div className="dogCardBorder">
                         {this.props.data.filter(data => data.breeds.length > 0).slice(0, 15).map(data => {

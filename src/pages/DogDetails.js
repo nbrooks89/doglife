@@ -1,10 +1,10 @@
 import React from 'react';
 import DogCard from "../components/DogCard"
-import "../pages/Randomize.css"
+import "../pages/DogDetails.css"
 
 class DogDetails extends React.Component {
     state = {
-
+        data: []
     }
 
     handleGetRequest = async () => {
@@ -34,7 +34,19 @@ class DogDetails extends React.Component {
         // console.log("STATEDATA", this.state.data)
         console.log("PARAMMMS", this.props.match.params.id)
         return (
-            <div>
+            <div >
+                <div className="title">
+                    {this.props.data.filter(data => data.breeds.length > 0).slice(0, 1).map(data => {
+                        console.log("data pic", this.props.data)
+                        return (
+
+                            <div>{data.breeds[0].name}</div>
+
+                        )
+                    })}
+                </div>
+
+
                 <div className="dogBox">
 
                     <div className="dogCardBorder">
@@ -43,9 +55,7 @@ class DogDetails extends React.Component {
                             return (
 
                                 <div>
-                                    <h1>hi</h1>
-
-                                    < DogCard imgUrl={data.url} name={data.breeds[0].name} />
+                                    < DogCard showDogs={this.props.showDogs} imgUrl={data.url} />
 
 
                                 </div>

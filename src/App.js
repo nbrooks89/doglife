@@ -35,7 +35,7 @@ class App extends React.Component {
     console.log("STATEDATAAPP", this.state.data)
 
     return (
-      <div>
+      <React.Fragment >
 
         <Header />
 
@@ -48,7 +48,7 @@ class App extends React.Component {
 
 
 
-      </div>
+      </React.Fragment>
 
 
 

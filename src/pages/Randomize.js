@@ -5,8 +5,7 @@ import "../pages/Randomize.css"
 import { Link } from "react-router-dom"
 class Randomize extends React.Component {
     state = {
-        showDogs: false,
-        data: []
+
     }
 
     handleGetRequest = async () => {
@@ -36,27 +35,27 @@ class Randomize extends React.Component {
         console.log("STATEDATA", this.state.data)
 
         return (
-            <div>
-                <div className="dogBox">
 
-                    <div className="dogCardBorder">
-                        {this.props.data.filter(data => data.breeds.length > 0).slice(0, 6).map(data => {
-                            console.log("data pic", this.props.data)
-                            return (
+            <div className="dogBox">
 
-                                <div>
+                <div className="dogCardBorder">
+                    {this.props.data.filter(data => data.breeds.length > 0).map(data => {
+                        console.log("data pic", this.props.data)
+                        return (
 
-
-                                    <Link to={"/DogDetails/" + data.breeds[0].id}> < DogCard imgUrl={data.url} name={data.breeds[0].name} /></Link>
+                            <>
 
 
-                                </div>
+                                <Link to={"/DogDetails/" + data.breeds[0].id}> < DogCard imgUrl={data.url} name={data.breeds[0].name} /></Link>
 
-                            )
-                        })}
-                    </div>
+
+                            </>
+
+                        )
+                    })}
                 </div>
             </div>
+
 
         );
     }
