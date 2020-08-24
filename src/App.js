@@ -44,7 +44,7 @@ class App extends React.Component {
         <Route path="/breeds" render={() => <AllBreeds data={this.state.data} showDogs={this.state.showDogs} setData={this.setData} setShowDogs={this.setShowDogs} />} />
         <Route path="/Randomize" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
         <Route path="/Favorites" component={Favorites} />
-        <Route path="/Randomize/:id" render={(routerProps) => <DogDetails match={routerProps.match} data={this.state.data} setData={this.setData} />} />
+        <Route path="/DogDetails/:id" render={(routerProps) => <DogDetails match={routerProps.match} data={this.state.data} setData={this.setData} />} />
 
 
 

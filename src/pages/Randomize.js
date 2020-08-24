@@ -47,7 +47,7 @@ class Randomize extends React.Component {
                                 <div>
 
 
-                                    <Link to="/DogDetails/id"> < DogCard imgUrl={data.url} name={data.breeds[0].name} /></Link>
+                                    <Link to={"/DogDetails/" + data.breeds[0].id}> < DogCard imgUrl={data.url} name={data.breeds[0].name} /></Link>
 
 
                                 </div>
