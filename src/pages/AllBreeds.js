@@ -2,6 +2,8 @@ import React from 'react';
 import DogCard from "../components/DogCard"
 import DropDown from "../components/DropDown"
 import "../pages/AllBreeds.css"
+import DogDetailsCard from "../components/DogDetailsCard"
+import { Container, Row, Col } from 'reactstrap';
 class AllBreeds extends React.Component {
     state = {
 
@@ -17,7 +19,7 @@ class AllBreeds extends React.Component {
 
         })
         const data = await response.json()
-        console.log("ALLBREEDS", data.url)
+
 
         this.props.setData(data)
 
@@ -31,41 +33,49 @@ class AllBreeds extends React.Component {
     }
 
     render() {
-
+        console.log("props", this.props.data)
+        const dogsWithBreed = this.props.data.filter(data => data.breeds.length > 0);
+        if (dogsWithBreed.length == 0) return "";
+        const dog = dogsWithBreed[0];
+        const breedName = dog.breeds[0].name;
+        const temperament = dog.breeds[0].temperament;
+        const bred_for = dog.breeds[0].bred_for;
+        const life_span = dog.breeds[0].life_span;
+        const weight = dog.breeds[0].weight.imperial;
 
         return (
             <div>
                 <div className="title">
-                    {this.props.data.filter(data => data.breeds.length > 0).slice(0, 1).map(data => {
-                        console.log("data pic", this.props.data)
-                        return (
-                            this.props.showDogs ? <div>{data.breeds[0].name}</div> : <div>Dog Breeds</div>
-                        )
-                    })}
+
+                    {this.props.showDogs ? <div>{breedName}</div> : <div>Dog Breeds</div>}
+
 
                     < DropDown data={this.state.data} setData={this.props.setData} setShowDogs={this.props.setShowDogs} />
                 </div>
-                <div className="dogBox">
+                {this.props.showDogs && <Container>
+
+                    <Row>
+                        <Col md="6"><DogDetailsCard data={this.props.data} showDogs={this.props.showDogs}
+                            imgUrl={dog.url} /></Col>
 
 
+                        <Col md="6">
+                            <div className="text1">
+                                Temperament:<span className="text2">  {temperament}</span>
+                            </div>
+                            <div className="text1">
+                                Bred For:<span className="text2">  {bred_for}</span>
+                            </div>
+                            <div className="text1">
+                                Life Span:<span className="text2">  {life_span}</span>
+                            </div>
+                            <div className="text1">
+                                weight:<span className="text2">  {weight} pounds</span>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>}
 
-                    {this.props.showDogs && (<div className="dogCardBorder">
-                        {this.props.data.filter(data => data.breeds.length > 0).slice(0, 15).map(data => {
-                            console.log("data pic", this.props.data)
-                            return (
-
-                                <div>
-
-
-                                    < DogCard showDogs={this.props.showDogs} imgUrl={data.url} name={data.breeds[0].name} />
-
-
-                                </div>
-
-                            )
-                        })}
-                    </div>)}
-                </div>
             </div>
 
         );

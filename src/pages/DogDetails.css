@@ -11,9 +11,9 @@
       } */
 
       .dogBox{
-        margin:5rem;
+        margin:2rem;
         }
-    .dogCardBorder{  
+    /* .dogCardBorder{  
         
            
            padding :10px;
@@ -26,11 +26,28 @@
           
           
           
+    } */
+
+    .grid-container{
+      
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(300px,1fr));  
+        
+        grid-gap:  2rem;
+      
     }
+  
       .title{
           display:flex;
    font-size: 50px;
     justify-content: center;
    padding-top: 30px;
 
+      }
+      .text1{
+        font-weight: bold;
+      }
+      .text2{
+        font-weight: normal
+        
       }

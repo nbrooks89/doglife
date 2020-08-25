@@ -25,7 +25,6 @@ class DropDown extends React.Component {
 
         })
         const data = await response.json()
-        console.log(data)
         this.props.setData(data)
         this.props.setShowDogs(true)
 

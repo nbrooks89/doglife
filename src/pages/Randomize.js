@@ -23,7 +23,18 @@ class Randomize extends React.Component {
 
     }
 
+    handleOnClick = async (event) => {
+        const response = await fetch("https://api.thedogapi.com/v1/images/search?&order=ASC&limit=30", {
+            method: 'GET',
+            header:
+                "x-api-key: f07ac2f8-e658-414a-aff2-971a64483ffe"
 
+        })
+        const data = await response.json()
+        console.log("ALLBREEDS", data.url)
+
+        this.props.setData(data)
+    }
 
 
 
@@ -32,30 +43,33 @@ class Randomize extends React.Component {
     }
 
     render() {
-        console.log("STATEDATA", this.state.data)
 
         return (
+            <div>
+                <div className="title">
+                    <div>Dog Shuffle</div>
+                    <button onClick={this.handleOnClick}>click</button>
+                </div>
+                <div className="dogBox">
 
-            <div className="dogBox">
+                    <div className="dogCardBorder">
+                        {this.props.data.filter(data => data.breeds.length > 0).map(data => {
+                            console.log("data pic", this.props.data)
+                            return (
 
-                <div className="dogCardBorder">
-                    {this.props.data.filter(data => data.breeds.length > 0).map(data => {
-                        console.log("data pic", this.props.data)
-                        return (
-
-                            <>
+                                <>
 
 
-                                <Link to={"/DogDetails/" + data.breeds[0].id}> < DogCard imgUrl={data.url} name={data.breeds[0].name} /></Link>
+                                    <Link to={"/DogDetails/" + data.breeds[0].id}> < DogCard imgUrl={data.url} name={data.breeds[0].name} /></Link>
 
 
-                            </>
+                                </>
 
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
-
 
         );
     }

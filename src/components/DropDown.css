@@ -9,6 +9,7 @@
   }
   .dropdown .select{
     width: 100%;
+    outline: none;
     
   background-position:80% center;
   }
@@ -23,6 +24,8 @@
     position: relative;
     z-index: 10;
     font-size: 1em;
+    outline: none;
+
   }
   .dropContainer{
     margin-left: 20px;

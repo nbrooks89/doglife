@@ -32,7 +32,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("STATEDATAAPP", this.state.data)
+    console.log("STATE_DATA", this.state.data)
 
     return (
       <React.Fragment >
