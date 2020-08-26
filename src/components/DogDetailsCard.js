@@ -13,7 +13,7 @@ class DogDetailsCard extends React.Component {
             <div className="container1">
                 <img className="dogcard" src={this.props.imgUrl} />
                 {!this.props.showDogs && (<div>{this.props.name}</div>)}
-
+                <button onClick={this.props.Clicked}>Favorite</button>
             </div>
         );
     }

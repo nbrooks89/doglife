@@ -19,7 +19,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends React.Component {
   state = {
     showDogs: false,
-    data: []
+    data: [],
+    favorites: [],
   }
   setData = (data) => {
     this.setState({ data: data })
@@ -30,9 +31,13 @@ class App extends React.Component {
     this.setState({ showDogs })
 
   }
+  setFavorites = (favorites) => {
+    this.setState({ favorites: favorites })
+
+  }
 
   render() {
-    console.log("STATE_DATA", this.state.data)
+    console.log("STATE_DATA", this.state.favorites)
 
     return (
       <React.Fragment >
@@ -43,8 +48,8 @@ class App extends React.Component {
         <Route exact path="/" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
         <Route path="/breeds" render={() => <AllBreeds data={this.state.data} showDogs={this.state.showDogs} setData={this.setData} setShowDogs={this.setShowDogs} />} />
         <Route path="/Randomize" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
-        <Route path="/Favorites" component={Favorites} />
-        <Route path="/DogDetails/:id" render={(routerProps) => <DogDetails match={routerProps.match} data={this.state.data} setData={this.setData} />} />
+        <Route path="/Favorites" render={(routerProps) => <Favorites match={routerProps.match} favorites={this.state.favorites} setFavorites={this.setFavorites} data={this.state.data} setData={this.setData} />} />
+        <Route path="/DogDetails/:id" render={(routerProps) => <DogDetails match={routerProps.match} favorites={this.state.favorites} setFavorites={this.setFavorites} data={this.state.data} setData={this.setData} />} />
 
 
 

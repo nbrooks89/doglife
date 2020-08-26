@@ -53,7 +53,7 @@ class Randomize extends React.Component {
                 <div className="dogBox">
 
                     <div className="dogCardBorder">
-                        {this.props.data.filter(data => data.breeds.length > 0).map(data => {
+                        {this.props.data.filter(data => data.breeds.length > 0).slice(0, 6).map(data => {
                             console.log("data pic", this.props.data)
                             return (
 

@@ -27,9 +27,34 @@ class DogDetails extends React.Component {
 
         })
         const data = await response.json()
-        console.log("ALLBREEDS", data)
+        console.log("ALLBREED", data[0].id)
 
         this.props.setData(data)
+
+    }
+    handlePostRequest = async () => {
+
+        const response = await fetch("https://api.thedogapi.com/v1/favourites", {
+            method: 'POST',
+
+            headers:
+            {
+                "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                "image_id": this.props.data[0].id,
+                "sub_id": "user-123"
+            })
+
+
+
+        })
+        const fav = await response.json()
+        console.log("FAV", fav)
+
+        this.props.setFavorites(fav)
 
     }
 
@@ -38,7 +63,7 @@ class DogDetails extends React.Component {
 
     componentDidMount() {
         this.handleGetRequest()
-
+        console.log(this.props.favorites)
 
     }
 
@@ -72,7 +97,7 @@ class DogDetails extends React.Component {
 
                                     <div>
                                         <DogDetailsCard showDogs={this.props.showDogs}
-                                            imgUrl={data.url} />
+                                            imgUrl={data.url} Clicked={this.handlePostRequest} />
 
 
                                     </div>
