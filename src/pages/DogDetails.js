@@ -79,7 +79,7 @@ class DogDetails extends React.Component {
                 <div className="title">
                     <div>{breedName}</div>
                 </div>
-                <DogCarousel imgUrls={this.props.data} />
+
 
 
                 <Container>
@@ -87,20 +87,17 @@ class DogDetails extends React.Component {
                     <Row>
                         <Col md="6">
 
-                            {this.props.data.map(data => {
-
-                                return (
-
-                                    <div>
-
-                                        <DogDetailsCard showDogs={this.props.showDogs}
-                                            imgUrl={data.url} Clicked={this.handlePostRequest} />
 
 
-                                    </div>
+                            <div>
+                                <DogCarousel imgUrls={this.props.data} Clicked={this.handlePostRequest} />
 
-                                )
-                            })}</Col>
+
+
+                            </div>
+
+
+                        </Col>
 
 
                         <Col md="6">

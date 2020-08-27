@@ -5,6 +5,8 @@ import {
     CarouselControl,
     CarouselIndicators,
 } from 'reactstrap';
+import '../components/DogCarousel.css'
+
 
 
 class DogCarousel extends React.Component {
@@ -16,8 +18,14 @@ class DogCarousel extends React.Component {
         this.goToIndex = this.goToIndex.bind(this);
         this.onExiting = this.onExiting.bind(this);
         this.onExited = this.onExited.bind(this);
+        this.showArrows = false
 
     }
+
+    // toggleArrows(){
+    //     const showArrows = this.state.showArrows
+    //     this.setState({showArrows: !showArrows})
+    // }
 
     onExiting() {
         this.animating = true;
@@ -56,27 +64,32 @@ class DogCarousel extends React.Component {
                     onExited={this.onExited}
                     key={img.url}
                 >
-                    <img src={img.url} />
+                    <div className="container1">
+                        <img className="dogcard" src={img.url} />
+                        {!this.props.showDogs && (<div>{this.props.name}</div>)}
+                        <button onClick={this.props.Clicked}>Favorite</button>
+
+
+                    </div>
+
                 </CarouselItem>
             );
         });
 
         return (
             <div>
-                <link
-                    rel='stylesheet'
-                    href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'
-                />
+
                 <Carousel
                     activeIndex={activeIndex}
                     next={this.next}
                     previous={this.previous}
                 >
+
                     <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
                     {slides}
                     <CarouselControl direction='prev' directionText='Previous' onClickHandler={this.previous} />
                     <CarouselControl direction='next' directionText='Next' onClickHandler={this.next} />
-                </Carousel>
+                </Carousel>s
             </div>
         );
     }
