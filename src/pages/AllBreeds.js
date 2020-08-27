@@ -84,7 +84,10 @@ class AllBreeds extends React.Component {
 
                     <Row>
                         <Col md="6">
-                            <DogCarousel imgUrls={this.props.data} showDogs={this.props.showDogs} Clicked={this.handlePostRequest} />
+                            {this.props.data.length == 1 ?
+                                <DogDetailsCard imgUrl={this.props.data[0].url} showDogs={this.props.showDogs} Clicked={this.handlePostRequest} /> :
+                                <DogCarousel imgUrls={this.props.data} showDogs={this.props.showDogs} Clicked={this.handlePostRequest} />
+                            }
                         </Col>
                         <Col md="6">
                             <div className="text1">
