@@ -3,13 +3,8 @@ import DogDetailsCard from "../components/DogDetailsCard"
 import "../pages/DogDetails.css"
 import { Container, Row, Col } from 'reactstrap';
 import DogCard from "../components/DogCard"
-import {
-    Carousel,
-    CarouselItem,
-    CarouselControl,
-    CarouselIndicators,
-    CarouselCaption
-} from 'reactstrap';
+import DogCarousel from '../components/DogCarousel';
+
 
 
 class DogDetails extends React.Component {
@@ -78,12 +73,13 @@ class DogDetails extends React.Component {
         const bred_for = dog.breeds[0].bred_for;
         const life_span = dog.breeds[0].life_span;
         const weight = dog.breeds[0].weight.imperial;
-
+        console.log("propsData", this.props.data)
         return (
             <div>
                 <div className="title">
                     <div>{breedName}</div>
                 </div>
+                <DogCarousel imgUrls={this.props.data} />
 
 
                 <Container>
@@ -96,6 +92,7 @@ class DogDetails extends React.Component {
                                 return (
 
                                     <div>
+
                                         <DogDetailsCard showDogs={this.props.showDogs}
                                             imgUrl={data.url} Clicked={this.handlePostRequest} />
 
