@@ -60,6 +60,7 @@ class DogCarousel extends React.Component {
         const slides = items.map((img) => {
             return (
                 <CarouselItem
+
                     onExiting={this.onExiting}
                     onExited={this.onExited}
                     key={img.url}
@@ -79,17 +80,18 @@ class DogCarousel extends React.Component {
         return (
             <div>
 
-                <Carousel
+                {<Carousel
                     activeIndex={activeIndex}
                     next={this.next}
                     previous={this.previous}
+                    interval={false}
                 >
 
                     <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
                     {slides}
                     <CarouselControl direction='prev' directionText='Previous' onClickHandler={this.previous} />
                     <CarouselControl direction='next' directionText='Next' onClickHandler={this.next} />
-                </Carousel>s
+                </Carousel>}
             </div>
         );
     }

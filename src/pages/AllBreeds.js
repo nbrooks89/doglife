@@ -4,6 +4,7 @@ import DropDown from "../components/DropDown"
 import "../pages/AllBreeds.css"
 import DogDetailsCard from "../components/DogDetailsCard"
 import { Container, Row, Col } from 'reactstrap';
+import DogCarousel from '../components/DogCarousel';
 class AllBreeds extends React.Component {
     state = {
 
@@ -24,6 +25,33 @@ class AllBreeds extends React.Component {
         this.props.setData(data)
 
     }
+
+    handlePostRequest = async () => {
+
+        const response = await fetch("https://api.thedogapi.com/v1/favourites", {
+            method: 'POST',
+
+            headers:
+            {
+                "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                "image_id": this.props.data[0].id,
+                "sub_id": "user-123"
+            })
+
+
+
+        })
+        const fav = await response.json()
+        console.log("FAV", fav)
+
+        this.props.setFavorites(fav)
+
+    }
+
 
 
 
@@ -55,10 +83,9 @@ class AllBreeds extends React.Component {
                 {this.props.showDogs && <Container>
 
                     <Row>
-                        <Col md="6"><DogDetailsCard data={this.props.data} showDogs={this.props.showDogs}
-                            imgUrl={dog.url} /></Col>
-
-
+                        <Col md="6">
+                            <DogCarousel imgUrls={this.props.data} showDogs={this.props.showDogs} Clicked={this.handlePostRequest} />
+                        </Col>
                         <Col md="6">
                             <div className="text1">
                                 Temperament:<span className="text2">  {temperament}</span>

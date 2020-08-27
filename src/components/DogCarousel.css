@@ -19,3 +19,26 @@
        display: grid;
        align-items: end;
    }
+   .carousel-indicators {
+    margin: 0px;
+    height: 0px;
+}
+
+    .carousel-indicators ol {
+        width: 100%;
+    }
+
+
+    .carousel-indicators li{
+        height: 3px !important;
+        border-radius: 0px !important;
+        width: 100% !important;
+        background-color: #0000ff;
+    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+    }
+    ol.carousel-indicators li.active {
+      width: 48px;
+    height: 48px;
+    
+    background-color: black
+    }
