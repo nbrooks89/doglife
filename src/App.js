@@ -21,8 +21,12 @@ class App extends React.Component {
     showDogs: false,
     data: [],
     favorites: [],
+    addToFavorites: false,
+
 
   }
+
+
   setData = (data) => {
     this.setState({ data: data })
 
@@ -36,10 +40,15 @@ class App extends React.Component {
     this.setState({ favorites: favorites })
 
   }
+  setAddToFavorites = () => {
+    this.setState({ addToFavorites: !this.state.addToFavorites })
+
+  }
+
 
 
   render() {
-    console.log("STATE_DATA", this.state.favorites)
+
 
     return (
       <React.Fragment >
@@ -48,16 +57,14 @@ class App extends React.Component {
 
 
         <Route exact path="/" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
-        <Route path="/breeds" render={() => <AllBreeds data={this.state.data} showDogs={this.state.showDogs} setData={this.setData} setShowDogs={this.setShowDogs} favorites={this.state.favorites} setFavorites={this.setFavorites} />} />
+        <Route path="/breeds" render={() => <AllBreeds data={this.state.data} showDogs={this.state.showDogs} setData={this.setData} setShowDogs={this.setShowDogs} favorites={this.state.favorites} setFavorites={this.setFavorites} addToFavorites={this.state.addToFavorites} setAddToFavorites={this.setAddToFavorites} />} />
         <Route path="/Randomize" render={() => <Randomize data={this.state.data} setData={this.setData} />} />
         <Route path="/Favorites" render={(routerProps) => <Favorites match={routerProps.match} favorites={this.state.favorites} setFavorites={this.setFavorites} data={this.state.data} setData={this.setData} />} />
-        <Route path="/DogDetails/:id" render={(routerProps) => <DogDetails match={routerProps.match} favorites={this.state.favorites} setFavorites={this.setFavorites} data={this.state.data} setData={this.setData} />} />
+        <Route path="/DogDetails/:id" render={(routerProps) => <DogDetails match={routerProps.match} favorites={this.state.favorites} setFavorites={this.setFavorites} data={this.state.data} setData={this.setData} addToFavorites={this.state.addToFavorites} setAddToFavorites={this.setAddToFavorites} />} />
 
 
 
       </React.Fragment>
-
-
 
 
     );

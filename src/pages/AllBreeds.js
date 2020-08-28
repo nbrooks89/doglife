@@ -28,28 +28,46 @@ class AllBreeds extends React.Component {
 
     handlePostRequest = async () => {
 
-        const response = await fetch("https://api.thedogapi.com/v1/favourites", {
-            method: 'POST',
+        if (!this.props.addToFavorites) {
+            const response = await fetch("https://api.thedogapi.com/v1/favourites", {
+                method: 'POST',
 
-            headers:
-            {
-                "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
-                "Content-Type": "application/json"
-            },
+                headers:
+                {
+                    "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
+                    "Content-Type": "application/json"
+                },
 
-            body: JSON.stringify({
-                "image_id": this.props.data[0].id,
-                "sub_id": "user-123"
+                body: JSON.stringify({
+                    "image_id": this.props.data[0].id,
+                    "sub_id": "user-123"
+                })
             })
+            const fav = await response.json()
+
+            this.props.setFavorites(fav)
+            this.props.setAddToFavorites()
+
+        } else {
+
+
+            const response = await fetch(`https://api.thedogapi.com/v1/favourites/${this.props.favorites.id}`, {
+                method: 'DELETE',
+
+                headers:
+                {
+                    "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
+                },
+
+            })
+            const data = await response.json()
+
+            console.log("delete", data)
 
 
 
-        })
-        const fav = await response.json()
-        console.log("FAV", fav)
 
-        this.props.setFavorites(fav)
-
+        }
     }
 
 
@@ -61,7 +79,7 @@ class AllBreeds extends React.Component {
     }
 
     render() {
-        console.log("props", this.props.data)
+        console.log("props", this.props.favorites)
         const dogsWithBreed = this.props.data.filter(data => data.breeds.length > 0);
         if (dogsWithBreed.length == 0) return "";
         const dog = dogsWithBreed[0];
@@ -84,10 +102,12 @@ class AllBreeds extends React.Component {
 
                     <Row>
                         <Col md="6">
-                            {this.props.data.length == 1 ?
-                                <DogDetailsCard imgUrl={this.props.data[0].url} showDogs={this.props.showDogs} Clicked={this.handlePostRequest} /> :
-                                <DogCarousel imgUrls={this.props.data} showDogs={this.props.showDogs} Clicked={this.handlePostRequest} />
-                            }
+                            <div>
+                                {this.props.data.length == 1 ?
+                                    <DogDetailsCard imgUrl={this.props.data[0].url} id={this.props.favorties} showDogs={this.props.showDogs} Clicked={this.handlePostRequest} addfavorite={this.props.addToFavorites} /> :
+                                    <DogCarousel imgUrls={this.props.data} showDogs={this.props.showDogs} Clicked={this.handlePostRequest} />
+                                }
+                            </div>
                         </Col>
                         <Col md="6">
                             <div className="text1">

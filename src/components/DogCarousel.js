@@ -5,7 +5,13 @@ import {
     CarouselControl,
     CarouselIndicators,
 } from 'reactstrap';
-import '../components/DogCarousel.css'
+import '../components/DogCarousel.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
+
 
 
 
@@ -66,9 +72,10 @@ class DogCarousel extends React.Component {
                     key={img.url}
                 >
                     <div className="container1">
+                        <div className="button3" onClick={this.props.Clicked}><FontAwesomeIcon icon={faHeart} size="2x" /> </div>
                         <img className="dogcard" src={img.url} />
                         {!this.props.showDogs && (<div>{this.props.name}</div>)}
-                        <button onClick={this.props.Clicked}>Favorite</button>
+
 
 
                     </div>

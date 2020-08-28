@@ -17,7 +17,7 @@ class Randomize extends React.Component {
 
         })
         const data = await response.json()
-        console.log("ALLBREEDS", data.url)
+
 
         this.props.setData(data)
 
@@ -31,7 +31,7 @@ class Randomize extends React.Component {
 
         })
         const data = await response.json()
-        console.log("ALLBREEDS", data.url)
+
 
         this.props.setData(data)
     }
@@ -54,7 +54,7 @@ class Randomize extends React.Component {
 
                     <div className="dogCardBorder">
                         {this.props.data.filter(data => data.breeds.length > 0).slice(0, 6).map(data => {
-                            console.log("data pic", this.props.data)
+
                             return (
 
                                 <>
