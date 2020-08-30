@@ -37,7 +37,11 @@ class App extends React.Component {
     console.log("addtofavorites", this.state.addToFavorites);
     return (
       <React.Fragment>
-        <Header />
+        <Header
+          data={this.state.data}
+          showDogs={this.state.showDogs}
+          setData={this.setData}
+        />
 
         <Route
           exact

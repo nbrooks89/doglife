@@ -1,8 +1,10 @@
 import React from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
+
 import "./Header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
+import DropDown from "../components/DropDown";
 
 class Header extends React.Component {
   render() {
@@ -15,6 +17,15 @@ class Header extends React.Component {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
+          <NavItem className="ml-auto drop">
+            <span>
+              <DropDown
+                data={this.props.data}
+                setData={this.props.setData}
+                setShowDogs={this.props.setShowDogs}
+              />
+            </span>
+          </NavItem>
           <Nav className="ml-auto">
             <Nav.Link href="/Breeds">
               <span className="Nav-Item">Breeds</span>

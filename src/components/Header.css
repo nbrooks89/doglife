@@ -11,3 +11,8 @@
 .navbar-toggler {
   border-color: rgb(192, 187, 187) !important;
 }
+
+.drop {
+  position: absolute;
+  left: 525px;
+}
