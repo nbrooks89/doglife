@@ -1,23 +1,18 @@
-.dogcard{
-  display:flex;
-  
-    width: 100%;
-    object-fit: contain;
-    
-    
-    
-  }
- .container1{
-  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-  
-   padding:10px;
+.dogcard {
+  display: flex;
+  max-height: 300px;
+  width: 100%;
+  object-fit: contain;
+}
+.container1 {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+
+  padding: 10px;
   border: 1px solid grey;
   text-align: center;
-     height:100%;
-     width:100%;
-  
-     display: grid;
-     align-items: end;
- }
-     
-   
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  align-items: end;
+}

@@ -4,10 +4,11 @@ import Header from "./components/Header";
 import Randomize from "./pages/Randomize";
 import Favorites from "./pages/Favorites";
 import DogDetails from "./pages/DogDetails";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import DropDown from "./components/DropDown";
 
 // const API_KEY = 'f07ac2f8-e658-414a-aff2-971a64483ffe'
 
@@ -39,6 +40,7 @@ class App extends React.Component {
       <React.Fragment>
         <Header
           data={this.state.data}
+          setShowDogs={this.setShowDogs}
           showDogs={this.state.showDogs}
           setData={this.setData}
         />
@@ -46,12 +48,6 @@ class App extends React.Component {
         <Route
           exact
           path="/"
-          render={() => (
-            <Randomize data={this.state.data} setData={this.setData} />
-          )}
-        />
-        <Route
-          path="/breeds"
           render={() => (
             <AllBreeds
               data={this.state.data}
@@ -62,6 +58,24 @@ class App extends React.Component {
               setFavorites={this.setFavorites}
               addToFavorites={this.state.addToFavorites}
               setAddToFavorites={this.setAddToFavorites}
+              history={this.props.location.pathname}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/Breeds"
+          render={(routerProps) => (
+            <AllBreeds
+              data={this.state.data}
+              showDogs={this.state.showDogs}
+              setData={this.setData}
+              setShowDogs={this.setShowDogs}
+              favorites={this.state.favorites}
+              setFavorites={this.setFavorites}
+              addToFavorites={this.state.addToFavorites}
+              setAddToFavorites={this.setAddToFavorites}
+              history={this.props.location.pathname}
             />
           )}
         />
@@ -71,6 +85,7 @@ class App extends React.Component {
             <Randomize data={this.state.data} setData={this.setData} />
           )}
         />
+
         <Route
           path="/Favorites"
           render={(routerProps) => (

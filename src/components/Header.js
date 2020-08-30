@@ -22,14 +22,12 @@ class Header extends React.Component {
               <DropDown
                 data={this.props.data}
                 setData={this.props.setData}
+                showDogs={this.props.showDogs}
                 setShowDogs={this.props.setShowDogs}
               />
             </span>
           </NavItem>
           <Nav className="ml-auto">
-            <Nav.Link href="/Breeds">
-              <span className="Nav-Item">Breeds</span>
-            </Nav.Link>
             <Nav.Link href="/Randomize">
               <span className="Nav-Item">Randomize</span>
             </Nav.Link>
