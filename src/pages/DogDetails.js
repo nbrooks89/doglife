@@ -7,7 +7,7 @@ import DogCarousel from "../components/DogCarousel";
 
 class DogDetails extends React.Component {
   state = {
-    data: [],
+    dogs: [],
   };
 
   handleGetRequest = async () => {
@@ -120,24 +120,6 @@ class DogDetails extends React.Component {
             </Col>
           </Row>
         </Container>
-
-        {/* <div className="dogBox">
-
-                    <div className="dogCardBorder">
-                        {this.props.data.filter(data => data.breeds.length > 0).map(data => {
-                            console.log("data pic", this.props.data)
-                            return (
-
-                                <div>
-                                    < DogCard showDogs={this.props.showDogs} imgUrl={data.url} />
-
-
-                                </div>
-
-                            )
-                        })}
-                    </div>
-                </div> */}
       </div>
     );
   }

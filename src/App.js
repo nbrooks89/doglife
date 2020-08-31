@@ -1,9 +1,10 @@
 import React from "react";
-import AllBreeds from "./pages/AllBreeds";
+
 import Header from "./components/Header";
 import Randomize from "./pages/Randomize";
 import Favorites from "./pages/Favorites";
 import DogDetails from "./pages/DogDetails";
+import Home from "./pages/Home";
 import { Route, withRouter } from "react-router-dom";
 
 import "./App.css";
@@ -45,40 +46,8 @@ class App extends React.Component {
           setData={this.setData}
         />
 
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <AllBreeds
-              data={this.state.data}
-              showDogs={this.state.showDogs}
-              setData={this.setData}
-              setShowDogs={this.setShowDogs}
-              favorites={this.state.favorites}
-              setFavorites={this.setFavorites}
-              addToFavorites={this.state.addToFavorites}
-              setAddToFavorites={this.setAddToFavorites}
-              history={this.props.location.pathname}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/Breeds"
-          render={(routerProps) => (
-            <AllBreeds
-              data={this.state.data}
-              showDogs={this.state.showDogs}
-              setData={this.setData}
-              setShowDogs={this.setShowDogs}
-              favorites={this.state.favorites}
-              setFavorites={this.setFavorites}
-              addToFavorites={this.state.addToFavorites}
-              setAddToFavorites={this.setAddToFavorites}
-              history={this.props.location.pathname}
-            />
-          )}
-        />
+        <Route exact path="/" component={Home} />
+
         <Route
           path="/Randomize"
           render={() => (

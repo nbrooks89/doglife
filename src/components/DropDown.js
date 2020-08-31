@@ -21,7 +21,7 @@ class DropDown extends React.Component {
     const data = await response.json();
     this.props.setData(data);
     this.props.setShowDogs(true);
-    this.props.history.push("/Breeds");
+    this.props.history.push("/DogDetails/:id");
   };
 
   handleGetRequest = async () => {
@@ -43,7 +43,7 @@ class DropDown extends React.Component {
   }
 
   render() {
-    console.log(this.state.dogs);
+    console.log("DATAAA", this.props.data);
 
     return (
       <div className="dropContainer">
