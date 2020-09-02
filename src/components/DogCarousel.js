@@ -43,6 +43,7 @@ class DogCarousel extends React.Component {
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
     console.log(this.props.imgUrls);
+    this.props.setCurrentImageId(this.props.imgUrls[this.state.activeIndex].id);
   }
 
   previous() {
@@ -52,19 +53,21 @@ class DogCarousel extends React.Component {
         ? this.props.imgUrls.length - 1
         : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
+    this.props.setCurrentImageId(this.props.imgUrls[this.state.activeIndex].id);
   }
 
   goToIndex(newIndex) {
     if (this.animating) return;
     this.setState({ activeIndex: newIndex });
+    this.props.setCurrentImageId(this.props.imgUrls[this.state.activeIndex].id);
   }
 
   render() {
     const items = this.props.imgUrls;
     const { activeIndex } = this.state;
-    console.log("IMGEURLS", items);
+
     let button;
-    !this.props.addfavorite
+    !this.props.heart
       ? (button = (
           <div
             className="button3"

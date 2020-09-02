@@ -21,7 +21,8 @@ class DropDown extends React.Component {
     const data = await response.json();
     this.props.setData(data);
     this.props.setShowDogs(true);
-    this.props.history.push("/DogDetails/:id");
+
+    this.props.history.push("/DogDetails/" + this.props.data[0].breeds[0].id);
   };
 
   handleGetRequest = async () => {
@@ -35,7 +36,6 @@ class DropDown extends React.Component {
     const data = await response.json();
     console.log("breeds", data);
     this.setState({ dogs: data });
-    console.log("DATAA", data);
   };
 
   componentDidMount() {
@@ -43,8 +43,6 @@ class DropDown extends React.Component {
   }
 
   render() {
-    console.log("DATAAA", this.props.data);
-
     return (
       <div className="dropContainer">
         <div className="dropdown">

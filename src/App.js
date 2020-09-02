@@ -18,7 +18,6 @@ class App extends React.Component {
     showDogs: false,
     data: [],
     favorites: [],
-    addToFavorites: false,
   };
 
   setData = (data) => {
@@ -30,13 +29,26 @@ class App extends React.Component {
   };
   setFavorites = (favorites) => {
     this.setState({ favorites: favorites });
+    console.log(this.state.favorites);
   };
-  setAddToFavorites = () => {
-    this.setState({ addToFavorites: !this.state.addToFavorites });
+  handleGetRequest = async () => {
+    const response = await fetch(
+      "https://api.thedogapi.com/v1/favourites?sub_id=user-123",
+      {
+        method: "GET",
+
+        headers: {
+          "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
+        },
+      }
+    );
+    const fav = await response.json();
+    console.log("FAVorite", fav);
+    console.log(fav);
+    this.setFavorites(fav);
   };
 
   render() {
-    console.log("addtofavorites", this.state.addToFavorites);
     return (
       <React.Fragment>
         <Header
@@ -47,26 +59,6 @@ class App extends React.Component {
         />
 
         <Route exact path="/" component={Home} />
-
-        <Route
-          path="/Randomize"
-          render={() => (
-            <Randomize data={this.state.data} setData={this.setData} />
-          )}
-        />
-
-        <Route
-          path="/Favorites"
-          render={(routerProps) => (
-            <Favorites
-              match={routerProps.match}
-              favorites={this.state.favorites}
-              setFavorites={this.setFavorites}
-              data={this.state.data}
-              setData={this.setData}
-            />
-          )}
-        />
         <Route
           path="/DogDetails/:id"
           render={(routerProps) => (
@@ -76,8 +68,27 @@ class App extends React.Component {
               setFavorites={this.setFavorites}
               data={this.state.data}
               setData={this.setData}
-              addToFavorites={this.state.addToFavorites}
-              setAddToFavorites={this.setAddToFavorites}
+            />
+          )}
+        />
+
+        <Route
+          path="/Randomize"
+          render={() => (
+            <Randomize data={this.state.data} setData={this.setData} />
+          )}
+        />
+
+        <Route
+          exact
+          path="/Favorites"
+          render={(routerProps) => (
+            <Favorites
+              match={routerProps.match}
+              favorites={this.state.favorites}
+              setFavorites={this.setFavorites}
+              data={this.state.data}
+              setData={this.setData}
             />
           )}
         />

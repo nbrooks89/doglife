@@ -7,7 +7,16 @@ import DogCarousel from "../components/DogCarousel";
 
 class DogDetails extends React.Component {
   state = {
-    dogs: [],
+    heart: false,
+    currentImageId: null,
+  };
+
+  switchHeart = () => {
+    this.setState({ heart: !this.state.heart });
+  };
+
+  setCurrentImageId = (currentImageId) => {
+    this.setState({ currentImageId });
   };
 
   handleGetRequest = async () => {
@@ -19,13 +28,13 @@ class DogDetails extends React.Component {
       }
     );
     const data = await response.json();
-    console.log("staatatata", data);
 
     this.props.setData(data);
   };
 
-  handlePostRequest = async () => {
-    if (this.props.addToFavorites === false) {
+  handleClickFavorite = async () => {
+    console.log("postfav", this.props.favorites);
+    if (this.state.heart === false) {
       const response = await fetch("https://api.thedogapi.com/v1/favourites", {
         method: "POST",
 
@@ -42,9 +51,10 @@ class DogDetails extends React.Component {
 
       const fav = await response.json();
 
-      this.props.setFavorites(fav);
-      this.props.setAddToFavorites();
-    } else if (this.props.addToFavorites === true) {
+      this.props.setFavorites([...this.props.favorites, fav]);
+
+      this.switchHeart();
+    } else {
       const response = await fetch(
         `https://api.thedogapi.com/v1/favourites/${this.props.favorites.id}`,
         {
@@ -57,7 +67,8 @@ class DogDetails extends React.Component {
       );
       const data = await response.json();
       console.log("delete", data);
-      this.props.setAddToFavorites();
+      this.switchHeart();
+      //this.props.setFavorites([...this.props.favorites, fav]);
     }
   };
 
@@ -66,7 +77,6 @@ class DogDetails extends React.Component {
   }
 
   render() {
-    console.log("FAVORITESID", this.props.favorites.id);
     const dogsWithBreed = this.props.data.filter(
       (data) => data.breeds.length > 0
     );
@@ -91,15 +101,16 @@ class DogDetails extends React.Component {
                 {this.props.data.length === 1 ? (
                   <DogDetailsCard
                     imgUrl={this.props.data[0].url}
-                    Clicked={this.handlePostRequest}
-                    addfavorite={this.props.addToFavorites}
+                    Clicked={this.handleClickFavorite}
+                    heart={this.state.heart}
                   />
                 ) : (
                   <DogCarousel
                     imgUrls={this.props.data}
                     showDogs={this.props.showDogs}
-                    Clicked={this.handlePostRequest}
-                    addfavorite={this.props.addToFavorites}
+                    Clicked={this.handleClickFavorite}
+                    heart={this.state.heart}
+                    setCurrentImageId={this.setCurrentImageId}
                   />
                 )}
               </div>

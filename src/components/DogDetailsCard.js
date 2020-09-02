@@ -7,7 +7,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 class DogDetailsCard extends React.Component {
   render() {
     let button;
-    !this.props.addfavorite
+    !this.props.heart
       ? (button = (
           <div
             className="button2"
