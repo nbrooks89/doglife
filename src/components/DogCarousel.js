@@ -42,7 +42,7 @@ class DogCarousel extends React.Component {
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
-    console.log(this.props.imgUrls);
+
     this.props.setCurrentImageId(this.props.imgUrls[this.state.activeIndex].id);
   }
 
@@ -64,8 +64,9 @@ class DogCarousel extends React.Component {
 
   render() {
     const items = this.props.imgUrls;
-    const { activeIndex } = this.state;
 
+    const { activeIndex } = this.state;
+    console.log("active", this.state.activeIndex);
     let button;
     !this.props.heart
       ? (button = (

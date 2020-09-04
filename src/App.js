@@ -29,7 +29,6 @@ class App extends React.Component {
   };
   setFavorites = (favorites) => {
     this.setState({ favorites: favorites });
-    console.log(this.state.favorites);
   };
   handleGetRequest = async () => {
     const response = await fetch(
@@ -47,7 +46,9 @@ class App extends React.Component {
     console.log(fav);
     this.setFavorites(fav);
   };
-
+  componentDidMount() {
+    this.handleGetRequest();
+  }
   render() {
     return (
       <React.Fragment>

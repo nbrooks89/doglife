@@ -22,7 +22,9 @@ class DropDown extends React.Component {
     this.props.setData(data);
     this.props.setShowDogs(true);
 
-    this.props.history.push("/DogDetails/" + this.props.data[0].breeds[0].id);
+    this.props.history.push(
+      "/DogDetails/" + this.props.data[0].breeds[0].id * 1
+    );
   };
 
   handleGetRequest = async () => {

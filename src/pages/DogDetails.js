@@ -8,7 +8,7 @@ import DogCarousel from "../components/DogCarousel";
 class DogDetails extends React.Component {
   state = {
     heart: false,
-    currentImageId: null,
+    currentImageId: "",
   };
 
   switchHeart = () => {
@@ -33,7 +33,6 @@ class DogDetails extends React.Component {
   };
 
   handleClickFavorite = async () => {
-    console.log("postfav", this.props.favorites);
     if (this.state.heart === false) {
       const response = await fetch("https://api.thedogapi.com/v1/favourites", {
         method: "POST",
@@ -52,7 +51,6 @@ class DogDetails extends React.Component {
       const fav = await response.json();
 
       this.props.setFavorites([...this.props.favorites, fav]);
-
       this.switchHeart();
     } else {
       const response = await fetch(
@@ -77,6 +75,8 @@ class DogDetails extends React.Component {
   }
 
   render() {
+    console.log("dogdata", this.props.data);
+    console.log("currentImageId", this.state.currentImageId);
     const dogsWithBreed = this.props.data.filter(
       (data) => data.breeds.length > 0
     );
@@ -87,6 +87,13 @@ class DogDetails extends React.Component {
     const bred_for = dog.breeds[0].bred_for;
     const life_span = dog.breeds[0].life_span;
     const weight = dog.breeds[0].weight.imperial;
+    const dogId = dog.id;
+
+    const favoritesImageIds = this.props.favorites.map((el) => el.image_id);
+    const imgIdMatchesFavId = favoritesImageIds.find((el) => el === dogId);
+    // imgIdMatchesFavId && this.switchHeart();
+
+    console.log(imgIdMatchesFavId);
 
     return (
       <div>
@@ -103,6 +110,7 @@ class DogDetails extends React.Component {
                     imgUrl={this.props.data[0].url}
                     Clicked={this.handleClickFavorite}
                     heart={this.state.heart}
+                    imgIdMatchesFavId={imgIdMatchesFavId}
                   />
                 ) : (
                   <DogCarousel

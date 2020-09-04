@@ -6,13 +6,17 @@
 .Nav-Item {
   color: #ffffff;
   font-family: "Acme", sans-serif;
+  display: inline;
+}
+.nav {
+  display: inline-block;
 }
 
 .navbar-toggler {
   border-color: rgb(192, 187, 187) !important;
+  display: inline;
 }
 
 .drop {
-  position: absolute;
-  left: 525px;
+  float: right;
 }
