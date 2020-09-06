@@ -9,7 +9,6 @@ import { Route, withRouter } from "react-router-dom";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DropDown from "./components/DropDown";
 
 // const API_KEY = 'f07ac2f8-e658-414a-aff2-971a64483ffe'
 

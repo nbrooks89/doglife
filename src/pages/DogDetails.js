@@ -7,12 +7,22 @@ import DogCarousel from "../components/DogCarousel";
 
 class DogDetails extends React.Component {
   state = {
-    heart: false,
     currentImageId: "",
   };
 
-  switchHeart = () => {
-    this.setState({ heart: !this.state.heart });
+  isHeartEnabled = () => {
+    const dogsWithBreed = this.props.data.filter(
+      (data) => data.breeds.length > 0
+    );
+    if (dogsWithBreed.length === 0) return "";
+    const dog = dogsWithBreed[0];
+    const dogId = dog.id;
+    const favoritesImageIds = this.props.favorites.map((el) => el.image_id);
+    const imgIdMatchesFavId = favoritesImageIds.find((el) => el === dogId);
+    console.log("FavArray", favoritesImageIds);
+    return imgIdMatchesFavId !== undefined;
+
+    console.log("IDMATCH", imgIdMatchesFavId);
   };
 
   setCurrentImageId = (currentImageId) => {
@@ -33,7 +43,7 @@ class DogDetails extends React.Component {
   };
 
   handleClickFavorite = async () => {
-    if (this.state.heart === false) {
+    if (!this.isHeartEnabled()) {
       const response = await fetch("https://api.thedogapi.com/v1/favourites", {
         method: "POST",
 
@@ -51,7 +61,8 @@ class DogDetails extends React.Component {
       const fav = await response.json();
 
       this.props.setFavorites([...this.props.favorites, fav]);
-      this.switchHeart();
+
+      console.log(fav);
     } else {
       const response = await fetch(
         `https://api.thedogapi.com/v1/favourites/${this.props.favorites.id}`,
@@ -65,17 +76,20 @@ class DogDetails extends React.Component {
       );
       const data = await response.json();
       console.log("delete", data);
-      this.switchHeart();
-      //this.props.setFavorites([...this.props.favorites, fav]);
+      const currentImageIndex = this.props.favorites.findIndex((el) => {
+        return el.image_id === this.state.currentImageId;
+      });
+      this.props.setFavorites(this.props.favorites.slice(currentImageIndex, 1));
     }
   };
 
-  componentDidMount() {
-    this.handleGetRequest();
+  async componentDidMount() {
+    await this.handleGetRequest();
+    this.setCurrentImageId(this.props.data[0].id);
   }
 
   render() {
-    console.log("dogdata", this.props.data);
+    console.log("dogdata", this.state.currentImageId);
     console.log("currentImageId", this.state.currentImageId);
     const dogsWithBreed = this.props.data.filter(
       (data) => data.breeds.length > 0
@@ -87,13 +101,8 @@ class DogDetails extends React.Component {
     const bred_for = dog.breeds[0].bred_for;
     const life_span = dog.breeds[0].life_span;
     const weight = dog.breeds[0].weight.imperial;
-    const dogId = dog.id;
 
-    const favoritesImageIds = this.props.favorites.map((el) => el.image_id);
-    const imgIdMatchesFavId = favoritesImageIds.find((el) => el === dogId);
-    // imgIdMatchesFavId && this.switchHeart();
-
-    console.log(imgIdMatchesFavId);
+    const heartEnabled = this.isHeartEnabled();
 
     return (
       <div>
@@ -103,27 +112,26 @@ class DogDetails extends React.Component {
 
         <Container>
           <Row>
-            <Col md="6">
+            <Col md="7">
               <div>
                 {this.props.data.length === 1 ? (
                   <DogDetailsCard
                     imgUrl={this.props.data[0].url}
                     Clicked={this.handleClickFavorite}
-                    heart={this.state.heart}
-                    imgIdMatchesFavId={imgIdMatchesFavId}
+                    heart={heartEnabled}
                   />
                 ) : (
                   <DogCarousel
                     imgUrls={this.props.data}
                     showDogs={this.props.showDogs}
                     Clicked={this.handleClickFavorite}
-                    heart={this.state.heart}
+                    heart={heartEnabled}
                     setCurrentImageId={this.setCurrentImageId}
                   />
                 )}
               </div>
             </Col>
-            <Col md="6">
+            <Col md="5">
               <div className="text1">
                 Temperament:<span className="text2"> {temperament}</span>
               </div>

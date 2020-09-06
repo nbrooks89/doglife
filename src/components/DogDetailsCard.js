@@ -14,8 +14,7 @@ class DogDetailsCard extends React.Component {
             id={this.props.id}
             onClick={this.props.Clicked}
           >
-            {" "}
-            <FontAwesomeIcon icon={faHeart} size="2x" />{" "}
+            <FontAwesomeIcon className="button2" icon={faHeart} size="3x" />{" "}
           </div>
         ))
       : (button = (
@@ -24,15 +23,17 @@ class DogDetailsCard extends React.Component {
             id={this.props.id}
             onClick={this.props.Clicked}
           >
-            <FontAwesomeIcon icon={faHeart} size="2x" color="red" />
+            <FontAwesomeIcon icon={faHeart} size="3x" color="red" />
           </div>
         ));
 
     return (
-      <div className="container2">
-        <img className="dogcard" src={this.props.imgUrl} />
+      <div className="container1">
+        <div>
+          <img className="dogcard" src={this.props.imgUrl} />
 
-        {button}
+          {button}
+        </div>
       </div>
     );
   }

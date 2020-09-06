@@ -49,11 +49,10 @@ class DropDown extends React.Component {
       <div className="dropContainer">
         <div className="dropdown">
           <div className="select">
-            <select
-              className="dropdown"
-              value={this.state.dogs.value}
-              onChange={this.handleChange}
-            >
+            <select value={this.state.dogs.value} onChange={this.handleChange}>
+              <option value="" disabled selected>
+                Dog Breeds
+              </option>
               {this.state.dogs.map((dog) => (
                 <option
                   onChange={this.handleChange}
@@ -64,6 +63,7 @@ class DropDown extends React.Component {
                   {dog.name}
                 </option>
               ))}
+              <option value="">Durr</option>
             </select>
           </div>
         </div>

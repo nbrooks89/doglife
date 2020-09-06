@@ -94,8 +94,8 @@ class DogCarousel extends React.Component {
           onExited={this.onExited}
           key={img.url}
         >
-          <div className="container1">
-            <img className="dogcard" src={img.url} />
+          <div className="container3">
+            <img className="dogcardCarousel " src={img.url} />
             {button}
             {!this.props.showDogs && <div>{this.props.name}</div>}
           </div>
@@ -112,11 +112,6 @@ class DogCarousel extends React.Component {
             previous={this.previous}
             interval={false}
           >
-            <CarouselIndicators
-              items={items}
-              activeIndex={activeIndex}
-              onClickHandler={this.goToIndex}
-            />
             {slides}
             <CarouselControl
               direction="prev"
