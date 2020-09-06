@@ -1,13 +1,20 @@
 import React from "react";
-import "../components/FavoritesCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../components/DogCard.css";
+
 class FavoritesCard extends React.Component {
   render() {
     return (
-      <div className="container3">
-        <img className="dogcard" src={this.props.imgUrl} />
-        <button id={this.props.id} onClick={this.props.delete}>
-          Delete
-        </button>
+      <div className="container4">
+        <img className="dogCardRandom" src={this.props.imgUrl} />
+        <div clasName="dogName">{this.props.name}</div>
+        <div
+          className="deleteButton"
+          id={this.props.id}
+          onClick={this.props.delete}
+        >
+          X
+        </div>
       </div>
     );
   }

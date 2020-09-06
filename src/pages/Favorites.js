@@ -1,6 +1,6 @@
 import React from "react";
 import FavoritesCard from "../components/FavoritesCard";
-
+import "../pages/Randomize.css";
 class Favorites extends React.Component {
   handleGetRequest = async () => {
     const response = await fetch(

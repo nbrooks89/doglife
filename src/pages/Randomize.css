@@ -1,26 +1,49 @@
-.dogBox{
-   
-    
-    margin:12rem;
-    
+.dogBox {
+  margin: 12rem;
 }
-.dogCardBorder{  
-    
-       
-       padding :10px;
-        overflow: hidden;
-       display:grid;
-       grid-template-columns: repeat(auto-fill,minmax(300px,1fr));  
-       align-items: end;
-       
-       grid-gap:  3rem;
-      
-      
-      
+.dogCardBorder {
+  padding: 10px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  align-items: end;
+
+  grid-gap: 3rem;
 }
-.title{
-    display:flex;
-    flex-direction: row;
-    text-align: center;
-    
+.title {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+}
+
+.shuffleButton {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  padding-top: 0;
+  font-size: 40px;
+  color: #272343;
+  border: 4px solid #272343;
+  background-color: #e3f6f5;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 60px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.shuffleButton:hover {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  padding-top: 0;
+  font-size: 40px;
+  color: #e3f6f5;
+  border: 4px solid #bae8e8;
+  background-color: #272343;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 60px;
+  padding-right: 10px;
+  padding-left: 10px;
 }

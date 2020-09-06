@@ -1,15 +1,16 @@
 import React from "react";
-
 import Header from "./components/Header";
 import Randomize from "./pages/Randomize";
 import Favorites from "./pages/Favorites";
 import DogDetails from "./pages/DogDetails";
 import Home from "./pages/Home";
 import { Route, withRouter } from "react-router-dom";
-
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faHeart, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+library.add(faHeart, faHeartRegular, faTimes);
 // const API_KEY = 'f07ac2f8-e658-414a-aff2-971a64483ffe'
 
 class App extends React.Component {

@@ -5,11 +5,10 @@ import {
   CarouselControl,
   CarouselIndicators,
 } from "reactstrap";
-import "../components/DogCarousel.css";
+import "../components/DogDetailsCard.css";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-
 class DogCarousel extends React.Component {
   constructor(props) {
     super(props);
@@ -71,20 +70,20 @@ class DogCarousel extends React.Component {
     !this.props.heart
       ? (button = (
           <div
-            className="button3"
+            className="button1"
             id={this.props.id}
             onClick={this.props.Clicked}
           >
-            <FontAwesomeIcon icon={faHeart} size="2x" />{" "}
+            <FontAwesomeIcon icon={["far", "heart"]} color="white" size="3x" />{" "}
           </div>
         ))
       : (button = (
           <div
-            className="button3"
+            className="button1"
             id={this.props.id}
             onClick={this.props.Clicked}
           >
-            <FontAwesomeIcon icon={faHeart} size="2x" color="red" />
+            <FontAwesomeIcon icon="heart" size="3x" color="red" />
           </div>
         ));
     const slides = items.map((img) => {
@@ -94,8 +93,8 @@ class DogCarousel extends React.Component {
           onExited={this.onExited}
           key={img.url}
         >
-          <div className="container3">
-            <img className="dogcardCarousel " src={img.url} />
+          <div className="container1">
+            <img className="dogcard " src={img.url} />
             {button}
             {!this.props.showDogs && <div>{this.props.name}</div>}
           </div>

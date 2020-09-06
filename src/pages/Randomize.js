@@ -39,8 +39,10 @@ class Randomize extends React.Component {
     return (
       <div>
         <div className="title">
-          <div>Dog Shuffle</div>
-          <button onClick={this.handleOnClick}>click</button>
+          <div>Dog</div>
+          <div className="shuffleButton" onClick={this.handleOnClick}>
+            Shuffle
+          </div>
         </div>
         <div className="dogBox">
           <div className="dogCardBorder">
