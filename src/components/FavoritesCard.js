@@ -13,7 +13,7 @@ class FavoritesCard extends React.Component {
           id={this.props.id}
           onClick={this.props.delete}
         >
-          X
+          x
         </div>
       </div>
     );

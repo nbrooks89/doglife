@@ -33,6 +33,7 @@
   padding-left: 10px;
 }
 .shuffleButton:hover {
+  cursor: pointer;
   display: flex;
   align-items: center;
   margin-left: 10px;

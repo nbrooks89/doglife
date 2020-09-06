@@ -53,6 +53,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Header
+          // history= {this.props.location.pathname}
           data={this.state.data}
           setShowDogs={this.setShowDogs}
           showDogs={this.state.showDogs}

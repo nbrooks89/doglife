@@ -1,23 +1,18 @@
 import React from "react";
-import { Nav, Navbar, NavItem, Form } from "react-bootstrap";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
 
 import "./Header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import DropDown from "../components/DropDown";
 
 class Header extends React.Component {
   render() {
     return (
-      <Navbar
-        collapseOnSelect
-        expand="sm"
-        className="color-nav"
-        justify-content-between
-      >
+      <Navbar collapseOnSelect expand="sm" className="color-nav">
         <Navbar.Brand>
           <Link to="/">
-            <span className="Nav-Item">DOG LIFE</span>
+            <span className="Nav-Item ">DOG LIFE</span>
           </Link>
         </Navbar.Brand>
         <NavItem>
@@ -35,12 +30,12 @@ class Header extends React.Component {
             id="responsive-navbar-nav "
             className="justify-content-end"
           >
-            <Nav.Link href="/Randomize">
+            <NavLink to="/Randomize" activeClassName="active">
               <span className="Nav-Item">Randomize</span>
-            </Nav.Link>
-            <Nav.Link href="/Favorites">
+            </NavLink>
+            <NavLink to="/Favorites" activeClassName="active">
               <span className="Nav-Item">Favorites</span>
-            </Nav.Link>
+            </NavLink>
           </Navbar.Collapse>
         </Nav>
       </Navbar>

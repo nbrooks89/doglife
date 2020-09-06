@@ -6,7 +6,6 @@ import "../components/DogDetailsCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class DogDetailsCard extends React.Component {
   render() {
-    console.log(this.props.data[0]);
     let button;
     !this.props.heart
       ? (button = (

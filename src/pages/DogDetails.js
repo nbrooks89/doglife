@@ -8,6 +8,7 @@ import DogCarousel from "../components/DogCarousel";
 class DogDetails extends React.Component {
   state = {
     currentImageId: "",
+    heartEnabled: false,
   };
 
   isHeartEnabled = () => {
@@ -19,10 +20,9 @@ class DogDetails extends React.Component {
     const dogId = dog.id;
     const favoritesImageIds = this.props.favorites.map((el) => el.image_id);
     const imgIdMatchesFavId = favoritesImageIds.find((el) => el === dogId);
+    console.log("IDMATCH", imgIdMatchesFavId);
     console.log("FavArray", favoritesImageIds);
     return imgIdMatchesFavId !== undefined;
-
-    console.log("IDMATCH", imgIdMatchesFavId);
   };
 
   setCurrentImageId = (currentImageId) => {
@@ -65,7 +65,7 @@ class DogDetails extends React.Component {
       console.log(fav);
     } else {
       const response = await fetch(
-        `https://api.thedogapi.com/v1/favourites/${this.props.favorites.id}`,
+        `https://api.thedogapi.com/v1/favourites/${this.state.currentImageId}`,
         {
           method: "DELETE",
 
@@ -101,7 +101,6 @@ class DogDetails extends React.Component {
     const bred_for = dog.breeds[0].bred_for;
     const life_span = dog.breeds[0].life_span;
     const weight = dog.breeds[0].weight.imperial;
-
     const heartEnabled = this.isHeartEnabled();
 
     return (
