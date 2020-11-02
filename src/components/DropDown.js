@@ -1,6 +1,6 @@
 import React from "react";
 import "./DropDown.css";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class DropDown extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class DropDown extends React.Component {
       }
     );
     const data = await response.json();
-    console.log("breeds", data);
+    
     this.setState({ dogs: data });
   };
 

@@ -3,12 +3,10 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators,
+ 
 } from "reactstrap";
 import "../components/DogDetailsCard.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class DogCarousel extends React.Component {
   constructor(props) {
     super(props);
@@ -20,11 +18,6 @@ class DogCarousel extends React.Component {
     this.onExited = this.onExited.bind(this);
     this.showArrows = false;
   }
-
-  // toggleArrows(){
-  //     const showArrows = this.state.showArrows
-  //     this.setState({showArrows: !showArrows})
-  // }
 
   onExiting() {
     this.animating = true;
@@ -65,27 +58,7 @@ class DogCarousel extends React.Component {
     const items = this.props.imgUrls;
 
     const { activeIndex } = this.state;
-    console.log("active", this.state.activeIndex);
-    let button;
-    !this.props.heart
-      ? (button = (
-          <div
-            className="button1"
-            id={this.props.id}
-            onClick={this.props.Clicked}
-          >
-            <FontAwesomeIcon icon={["far", "heart"]} color="white" size="3x" />{" "}
-          </div>
-        ))
-      : (button = (
-          <div
-            className="button1"
-            id={this.props.id}
-            onClick={this.props.Clicked}
-          >
-            <FontAwesomeIcon icon="heart" size="3x" color="red" />
-          </div>
-        ));
+    
     const slides = items.map((img) => {
       return (
         <CarouselItem
@@ -94,8 +67,8 @@ class DogCarousel extends React.Component {
           key={img.url}
         >
           <div className="container1">
-            <img className="dogcard " src={img.url} />
-            {button}
+            <img className="dogcard " src={img.url} alt="specific dog " />
+            
             {!this.props.showDogs && <div>{this.props.name}</div>}
           </div>
         </CarouselItem>

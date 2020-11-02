@@ -4,13 +4,14 @@ import Randomize from "./pages/Randomize";
 import Favorites from "./pages/Favorites";
 import DogDetails from "./pages/DogDetails";
 import Home from "./pages/Home";
-import { Route, withRouter } from "react-router-dom";
+import { Route} from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPaw} from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-library.add(faHeart, faHeartRegular, faTimes);
+library.add(faHeart, faHeartRegular, faTimes,faPaw);
 // const API_KEY = 'f07ac2f8-e658-414a-aff2-971a64483ffe'
 
 class App extends React.Component {
@@ -27,28 +28,7 @@ class App extends React.Component {
   setShowDogs = (showDogs) => {
     this.setState({ showDogs });
   };
-  setFavorites = (favorites) => {
-    this.setState({ favorites: favorites });
-  };
-  handleGetRequest = async () => {
-    const response = await fetch(
-      "https://api.thedogapi.com/v1/favourites?sub_id=user-123",
-      {
-        method: "GET",
 
-        headers: {
-          "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
-        },
-      }
-    );
-    const fav = await response.json();
-    console.log("FAVorite", fav);
-    console.log(fav);
-    this.setFavorites(fav);
-  };
-  componentDidMount() {
-    this.handleGetRequest();
-  }
   render() {
     return (
       <React.Fragment>

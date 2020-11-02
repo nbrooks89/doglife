@@ -8,15 +8,11 @@
   font-family: "Acme", sans-serif;
   display: inline;
   font-size: 20px;
+  margin-left: 10px;
 }
 .nav {
   display: inline-block;
   border-bottom: 5px solid #e3f6f5;
-}
-
-.navbar-toggler {
-  border-color: rgb(192, 187, 187) !important;
-  display: inline;
 }
 
 .navbar-brand {

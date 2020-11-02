@@ -21,7 +21,18 @@
 }
 .text1 {
   font-weight: bold;
+  font-size: 23px;
+  margin-bottom: 10px;
 }
 .text2 {
   font-weight: normal;
+  font-size: 20px;
+}
+.columnDetails {
+  border: 1px solid black;
+  background-color: #bae8e8;
+  margin-top: 20px;
+}
+.columnDetails1 {
+  margin-top: 20px;
 }

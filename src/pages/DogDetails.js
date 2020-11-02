@@ -38,59 +38,18 @@ class DogDetails extends React.Component {
       }
     );
     const data = await response.json();
-
     this.props.setData(data);
+    console.log(data)
   };
 
-  handleClickFavorite = async () => {
-    if (!this.isHeartEnabled()) {
-      const response = await fetch("https://api.thedogapi.com/v1/favourites", {
-        method: "POST",
+  
 
-        headers: {
-          "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          image_id: this.props.data[0].id,
-          sub_id: "user-123",
-        }),
-      });
-
-      const fav = await response.json();
-
-      this.props.setFavorites([...this.props.favorites, fav]);
-
-      console.log(fav);
-    } else {
-      const response = await fetch(
-        `https://api.thedogapi.com/v1/favourites/${this.state.currentImageId}`,
-        {
-          method: "DELETE",
-
-          headers: {
-            "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
-          },
-        }
-      );
-      const data = await response.json();
-      console.log("delete", data);
-      const currentImageIndex = this.props.favorites.findIndex((el) => {
-        return el.image_id === this.state.currentImageId;
-      });
-      this.props.setFavorites(this.props.favorites.slice(currentImageIndex, 1));
-    }
-  };
-
-  async componentDidMount() {
-    await this.handleGetRequest();
-    this.setCurrentImageId(this.props.data[0].id);
+   componentDidMount() {
+    this.handleGetRequest();
+   
   }
 
   render() {
-    console.log("dogdata", this.state.currentImageId);
-    console.log("currentImageId", this.state.currentImageId);
     const dogsWithBreed = this.props.data.filter(
       (data) => data.breeds.length > 0
     );
@@ -101,7 +60,7 @@ class DogDetails extends React.Component {
     const bred_for = dog.breeds[0].bred_for;
     const life_span = dog.breeds[0].life_span;
     const weight = dog.breeds[0].weight.imperial;
-    const heartEnabled = this.isHeartEnabled();
+ 
 
     return (
       <div>
@@ -111,37 +70,32 @@ class DogDetails extends React.Component {
 
         <Container>
           <Row>
-            <Col md="7">
+            <Col md="7" className="columnDetails1">
               <div>
                 {this.props.data.length === 1 ? (
                   <DogDetailsCard
                     imgUrl={this.props.data[0].url}
-                    Clicked={this.handleClickFavorite}
-                    heart={heartEnabled}
                   />
                 ) : (
                   <DogCarousel
                     imgUrls={this.props.data}
                     showDogs={this.props.showDogs}
-                    Clicked={this.handleClickFavorite}
-                    heart={heartEnabled}
-                    setCurrentImageId={this.setCurrentImageId}
                   />
                 )}
               </div>
             </Col>
-            <Col md="5">
-              <div className="text1">
-                Temperament:<span className="text2"> {temperament}</span>
-              </div>
-              <div className="text1">
-                Bred For:<span className="text2"> {bred_for}</span>
-              </div>
+            <Col md="5" className="columnDetails">
               <div className="text1">
                 Life Span:<span className="text2"> {life_span}</span>
               </div>
               <div className="text1">
                 weight:<span className="text2"> {weight} pounds</span>
+              </div>
+              <div className="text1">
+                Bred For:<span className="text2"> {bred_for}</span>
+              </div>
+              <div className="text1">
+                Temperament:<span className="text2"> {temperament}</span>
               </div>
             </Col>
           </Row>
