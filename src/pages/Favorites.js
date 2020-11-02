@@ -1,44 +1,31 @@
 import React from "react";
 import FavoritesCard from "../components/FavoritesCard";
-
+import "../pages/Randomize.css";
 class Favorites extends React.Component {
-  handleGetRequest = async () => {
-    const response = await fetch(
-      "https://api.thedogapi.com/v1/favourites?sub_id=user-123",
-      {
-        method: "GET",
-
-        headers: {
-          "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
-        },
+ 
+  addFav(props:any){ 
+    let array = this.state.favorites;
+    let addArray = true;
+    array.map((item: any, key:number) => {
+      if(item === props.i){
+      array.splice(key,1);
+      addArray = false;
       }
-    );
-    const fav = await response.json();
-    console.log("FAVorite", fav);
-    console.log(fav);
-    this.props.setFavorites(fav);
-  };
+    })
+    if (addArray) {
+      array.push(props.i)
+    }
+    this.setState({favorites:[...array]})
+    localStorage.setItem("favorites", JSON.stringify(this.state.favorites))
 
-  handleDelete = async (event) => {
-    console.log("State", event.target.id);
-    const response = await fetch(
-      `https://api.thedogapi.com/v1/favourites/${event.target.id}`,
-      {
-        method: "DELETE",
-
-        headers: {
-          "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
-        },
-      }
-    );
-    const data = await response.json();
-    console.log("FAVorite", data);
-    this.handleGetRequest();
-  };
-
-  componentDidMount() {
-    this.handleGetRequest();
+    const storage = localStorage.getItem("favItem" + (props.i) || "0")
+    if(storage == null){
+      localStorage.setItem(("favItem" + (props.i)), JSON.stringify(props.items));
+    }else{
+      localStorage.removeItem("favItem" + (props.i))
+    }
   }
+
   render() {
     return (
       <>

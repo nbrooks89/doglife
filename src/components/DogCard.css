@@ -1,18 +1,115 @@
-.dogcard {
+.dogCardRandom {
   display: flex;
-  max-height: 300px;
+  /* max-height: 300px; */
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
-.container1 {
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 
-  padding: 10px;
-  border: 1px solid grey;
+.container3 {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  border: 2px solid #272343;
   text-align: center;
-  height: 100%;
+
+  width: 100%;
+  display: grid;
+  align-items: end;
+}
+.container3:hover {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.6);
+  transform: scale(1, 1);
+  padding: 10px;
+  border: 1px solid #272343;
+  text-align: center;
+
   width: 100%;
 
   display: grid;
   align-items: end;
 }
+.container4 {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  border: 2px solid #272343;
+  text-align: center;
+  /* height: 100%; */
+  width: 100%;
+  display: grid;
+  align-items: end;
+  position: relative;
+}
+
+a {
+  font-size: 25px;
+  color: #272343;
+  font-weight: 400;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #272343;
+}
+.deleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 15%;
+  position: absolute;
+  justify-self: end;
+  align-self: start;
+  font-weight: 700;
+  font-size: 40px;
+}
+.deleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 15%;
+  position: absolute;
+  justify-self: end;
+  align-self: start;
+  font-weight: 700;
+  font-size: 40px;
+
+  color: white;
+}
+.deleteButton:hover {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 15%;
+  position: absolute;
+  justify-self: end;
+  align-self: start;
+  font-weight: 700;
+  font-size: 40px;
+  opacity: 80%;
+  color: #bae8e8;
+}
+/* .button1 {
+  margin-top: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: end;
+  align-self: start;
+  position: absolute;
+
+  height: 50px;
+  width: 16%;
+}
+.button1:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  justify-self: end;
+  align-self: start;
+  position: absolute;
+  height: 50px;
+  width: 16%;
+} */

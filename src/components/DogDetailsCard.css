@@ -1,57 +1,58 @@
-.dogcard{
-    display:flex;
-    
-      width: 100%;
-      object-fit: contain;
-      
-      
-      
-    }
-   .container2{
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-    padding: 0!important;
-     padding:10px;
-    border: 1px solid grey;
-    text-align: center;
-       height:100%;
-       width:100%;
-    
-       display: grid;
-       align-items: end;
-       position: relative;
-   }
-   .button2 {
-     display:flex;
-     justify-content: center;
-     align-items: center;
-    justify-self: end;
-    align-self: end;
-    position: absolute;
-    border: 1px solid black;
-    background-color: grey;
-    height:40px;
-    width:100%;
-    opacity: 55%;
-    
+.dogcard {
+  display: flex;
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+.container1 {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  padding: 0 !important;
+  padding: 10px;
+  border: 1px solid grey;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  border: 5px solid #272343;
+  display: grid;
+  align-items: end;
+  position: relative;
+}
+.button1 {
+  margin-top: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: end;
+  align-self: start;
+  position: absolute;
 
-  }
-  .button2:hover {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.5);
-    justify-self: end;
-    align-self: end;
-    position: absolute;
-    border: 1px solid black;
-    
-    height:40px;
-    width:100%;
-    opacity: 55%;
-    
-     
-    
+  height: 50px;
+  width: 16%;
+}
+.button1:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  }
-        
-       
+  justify-self: end;
+  align-self: start;
+  position: absolute;
+  height: 50px;
+  width: 16%;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  height: 100px;
+  position: absolute;
+  top: 150px;
+}
+
+.carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
+}
+.carousel-control-prev-icon {
+  width: 30px;
+  height: 30px;
+}

@@ -1,18 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
 
 .color-nav {
-  background-color: #272343;
+  background-color: #bae8e8;
 }
 .Nav-Item {
-  color: #ffffff;
+  color: #272343;
   font-family: "Acme", sans-serif;
+  display: inline;
+  font-size: 20px;
+}
+.nav {
+  display: inline-block;
+  border-bottom: 5px solid #e3f6f5;
 }
 
 .navbar-toggler {
   border-color: rgb(192, 187, 187) !important;
+  display: inline;
+}
+
+.navbar-brand {
+  font-size: 40px;
 }
 
 .drop {
-  position: absolute;
-  left: 525px;
+  float: right;
+}
+
+.active {
+  text-decoration: underline;
+}
+.active:hover {
+  text-decoration: underline;
 }

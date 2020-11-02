@@ -18,7 +18,7 @@ class Randomize extends React.Component {
     this.props.setData(data);
   };
 
-  handleOnClick = async (event) => {
+  handleOnClick = async () => {
     const response = await fetch(
       "https://api.thedogapi.com/v1/images/search?&order=ASC&limit=30",
       {
@@ -39,8 +39,10 @@ class Randomize extends React.Component {
     return (
       <div>
         <div className="title">
-          <div>Dog Shuffle</div>
-          <button onClick={this.handleOnClick}>click</button>
+          <div>Dog</div>
+          <div className="shuffleButton" onClick={this.handleOnClick}>
+            Shuffle
+          </div>
         </div>
         <div className="dogBox">
           <div className="dogCardBorder">
@@ -51,7 +53,6 @@ class Randomize extends React.Component {
                 return (
                   <>
                     <Link to={"/DogDetails/" + data.breeds[0].id}>
-                      {" "}
                       <DogCard imgUrl={data.url} name={data.breeds[0].name} />
                     </Link>
                   </>

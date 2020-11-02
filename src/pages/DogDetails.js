@@ -7,7 +7,9 @@ import DogCarousel from "../components/DogCarousel";
 
 class DogDetails extends React.Component {
   state = {
-    data: [],
+    data:[],
+
+   
   };
 
   handleGetRequest = async () => {
@@ -20,57 +22,26 @@ class DogDetails extends React.Component {
     );
     const data = await response.json();
     console.log("staatatata", data);
-
     this.props.setData(data);
+    this.setState({data:data})
   };
 
-  handlePostRequest = async () => {
-    if (this.props.addToFavorites === false) {
-      const response = await fetch("https://api.thedogapi.com/v1/favourites", {
-        method: "POST",
-
-        headers: {
-          "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          image_id: this.props.data[0].id,
-          sub_id: "user-123",
-        }),
-      });
-
-      const fav = await response.json();
-
-      this.props.setFavorites(fav);
-      this.props.setAddToFavorites();
-    } else if (this.props.addToFavorites === true) {
-      const response = await fetch(
-        `https://api.thedogapi.com/v1/favourites/${this.props.favorites.id}`,
-        {
-          method: "DELETE",
-
-          headers: {
-            "x-api-key": "f07ac2f8-e658-414a-aff2-971a64483ffe",
-          },
-        }
-      );
-      const data = await response.json();
-      console.log("delete", data);
-      this.props.setAddToFavorites();
-    }
-  };
-
+  
   componentDidMount() {
     this.handleGetRequest();
+    console.log()
+   
   }
-
   render() {
-    console.log("FAVORITESID", this.props.favorites.id);
+  
     const dogsWithBreed = this.props.data.filter(
       (data) => data.breeds.length > 0
     );
+    const id = this.props.data.map(
+      data => data.id
+    )
     if (dogsWithBreed.length === 0) return "";
+
     const dog = dogsWithBreed[0];
     const breedName = dog.breeds[0].name;
     const temperament = dog.breeds[0].temperament;
@@ -78,28 +49,33 @@ class DogDetails extends React.Component {
     const life_span = dog.breeds[0].life_span;
     const weight = dog.breeds[0].weight.imperial;
 
+   
+
+    
     return (
       <div>
         <div className="title">
           <div>{breedName}</div>
+          <div>{id}</div>
         </div>
-
         <Container>
           <Row>
             <Col md="6">
               <div>
                 {this.props.data.length === 1 ? (
                   <DogDetailsCard
+                 
                     imgUrl={this.props.data[0].url}
-                    Clicked={this.handlePostRequest}
-                    addfavorite={this.props.addToFavorites}
-                  />
+                    id={this.props.data[0].id}
+                    favorites={this.props.favorites}
+                   />
                 ) : (
                   <DogCarousel
                     imgUrls={this.props.data}
+                    id={this.props.data[0].id}
                     showDogs={this.props.showDogs}
-                    Clicked={this.handlePostRequest}
-                    addfavorite={this.props.addToFavorites}
+                    favorites={this.props.favorites}
+                   
                   />
                 )}
               </div>
@@ -120,27 +96,11 @@ class DogDetails extends React.Component {
             </Col>
           </Row>
         </Container>
-
-        {/* <div className="dogBox">
-
-                    <div className="dogCardBorder">
-                        {this.props.data.filter(data => data.breeds.length > 0).map(data => {
-                            console.log("data pic", this.props.data)
-                            return (
-
-                                <div>
-                                    < DogCard showDogs={this.props.showDogs} imgUrl={data.url} />
-
-
-                                </div>
-
-                            )
-                        })}
-                    </div>
-                </div> */}
-      </div>
-    );
-  }
+            </div>
+        );
+    }
 }
+
+   
 
 export default DogDetails;
