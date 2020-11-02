@@ -6,10 +6,16 @@ import {
   CarouselIndicators,
 } from "reactstrap";
 import "../components/DogDetailsCard.css";
+<<<<<<< HEAD
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Favorites from "../pages/Favorites";
 
+=======
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+>>>>>>> 654f91b91deec5604d43c22e650bd8e14e7be400
 class DogCarousel extends React.Component {
   constructor(props) {
     super(props);
@@ -56,6 +62,7 @@ class DogCarousel extends React.Component {
     if (this.animating) return;
     this.setState({ activeIndex: newIndex });
     this.props.setCurrentImageId(this.props.imgUrls[this.state.activeIndex].id);
+<<<<<<< HEAD
   }
 
  
@@ -81,15 +88,43 @@ class DogCarousel extends React.Component {
     }else{
       localStorage.removeItem("favItem" + (props.i))
     }
+=======
+>>>>>>> 654f91b91deec5604d43c22e650bd8e14e7be400
   }
   
 
 
   render() {
     const items = this.props.imgUrls;
+<<<<<<< HEAD
  
     const { activeIndex } = this.state;
   
+=======
+
+    const { activeIndex } = this.state;
+    console.log("active", this.state.activeIndex);
+    let button;
+    !this.props.heart
+      ? (button = (
+          <div
+            className="button1"
+            id={this.props.id}
+            onClick={this.props.Clicked}
+          >
+            <FontAwesomeIcon icon={["far", "heart"]} color="white" size="3x" />{" "}
+          </div>
+        ))
+      : (button = (
+          <div
+            className="button1"
+            id={this.props.id}
+            onClick={this.props.Clicked}
+          >
+            <FontAwesomeIcon icon="heart" size="3x" color="red" />
+          </div>
+        ));
+>>>>>>> 654f91b91deec5604d43c22e650bd8e14e7be400
     const slides = items.map((img) => {
       return (
         <CarouselItem
@@ -99,6 +134,7 @@ class DogCarousel extends React.Component {
         >
           <div className="container1">
             <img className="dogcard " src={img.url} />
+<<<<<<< HEAD
            
             {this.props.favorites.includes(i) ? 
               <div  onClick={() => this.addFav({ items,i})} > <FontAwesomeIcon icon={faHeart} size="2x"  />  </div> 
@@ -107,6 +143,10 @@ class DogCarousel extends React.Component {
             }
   
              
+=======
+            {button}
+            {!this.props.showDogs && <div>{this.props.name}</div>}
+>>>>>>> 654f91b91deec5604d43c22e650bd8e14e7be400
           </div>
         </CarouselItem>
       );
