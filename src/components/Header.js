@@ -1,42 +1,38 @@
 import React from "react";
-import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { Nav, Navbar} from "react-bootstrap";
 
 import "./Header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, NavLink } from "react-router-dom";
 import DropDown from "../components/DropDown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaw } from "@fortawesome/free-solid-svg-icons";
 
 class Header extends React.Component {
   render() {
     return (
-      <Navbar collapseOnSelect expand="sm" className="color-nav">
+      <Navbar navbar-expand className="color-nav">
         <Navbar.Brand>
           <Link to="/">
-            <span className="Nav-Item ">DOG LIFE</span>
+            <span className="Nav-Item "><FontAwesomeIcon icon={faPaw} size="2x" color="black" /></span>
           </Link>
         </Navbar.Brand>
-        <NavItem>
+       
+        <Nav className="ml-auto">
+         
+            
           <DropDown
             data={this.props.data}
             setData={this.props.setData}
             showDogs={this.props.showDogs}
             setShowDogs={this.props.setShowDogs}
           />
-        </NavItem>
-        <Nav className="ml-auto">
-          <Navbar.Toggle aria-controls="responsive-navbar-nav " />
-
-          <Navbar.Collapse
-            id="responsive-navbar-nav "
-            className="justify-content-end"
-          >
+      
             <NavLink to="/Randomize" activeClassName="active">
               <span className="Nav-Item">Randomize</span>
             </NavLink>
-            <NavLink to="/Favorites" activeClassName="active">
-              <span className="Nav-Item">Favorites</span>
-            </NavLink>
-          </Navbar.Collapse>
+           
+          
         </Nav>
       </Navbar>
     );
