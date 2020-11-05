@@ -29,6 +29,7 @@ class App extends React.Component {
     this.setState({ showDogs });
   };
 
+
   render() {
     return (
       <React.Fragment>
@@ -49,6 +50,7 @@ class App extends React.Component {
               favorites={this.state.favorites}
               setFavorites={this.setFavorites}
               data={this.state.data}
+
               setData={this.setData}
             />
           )}

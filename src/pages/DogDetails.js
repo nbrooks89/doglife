@@ -7,27 +7,12 @@ import DogCarousel from "../components/DogCarousel";
 
 class DogDetails extends React.Component {
   state = {
-    currentImageId: "",
-    heartEnabled: false,
+
+    data:[]
   };
 
-  isHeartEnabled = () => {
-    const dogsWithBreed = this.props.data.filter(
-      (data) => data.breeds.length > 0
-    );
-    if (dogsWithBreed.length === 0) return "";
-    const dog = dogsWithBreed[0];
-    const dogId = dog.id;
-    const favoritesImageIds = this.props.favorites.map((el) => el.image_id);
-    const imgIdMatchesFavId = favoritesImageIds.find((el) => el === dogId);
-    console.log("IDMATCH", imgIdMatchesFavId);
-    console.log("FavArray", favoritesImageIds);
-    return imgIdMatchesFavId !== undefined;
-  };
+  
 
-  setCurrentImageId = (currentImageId) => {
-    this.setState({ currentImageId });
-  };
 
   handleGetRequest = async () => {
     const response = await fetch(
@@ -38,6 +23,7 @@ class DogDetails extends React.Component {
       }
     );
     const data = await response.json();
+
     this.props.setData(data);
     console.log(data)
   };
@@ -47,13 +33,32 @@ class DogDetails extends React.Component {
    componentDidMount() {
     this.handleGetRequest();
    
-  }
 
+    console.log("staatatata", data);
+    this.props.setData(data);
+    this.setState({data:data})
+  };
+
+  
+  componentDidMount() {
+    this.handleGetRequest();
+    console.log()
+   
+
+
+ componentDidMount() {
+     this.handleGetRequest();
+  }
   render() {
+
     const dogsWithBreed = this.props.data.filter(
       (data) => data.breeds.length > 0
     );
+    const id = this.props.data.map(
+      data => data.id
+    )
     if (dogsWithBreed.length === 0) return "";
+
     const dog = dogsWithBreed[0];
     const breedName = dog.breeds[0].name;
     const temperament = dog.breeds[0].temperament;
@@ -62,23 +67,32 @@ class DogDetails extends React.Component {
     const weight = dog.breeds[0].weight.imperial;
  
 
+   
+
+    
     return (
       <div>
         <div className="title">
           <div>{breedName}</div>
+          <div>{id}</div>
         </div>
-
         <Container>
           <Row>
             <Col md="7" className="columnDetails1">
               <div>
                 {this.props.data.length === 1 ? (
                   <DogDetailsCard
+                 
                     imgUrl={this.props.data[0].url}
+
+                    id={this.props.data[0].id}
+     
                   />
+
                 ) : (
                   <DogCarousel
                     imgUrls={this.props.data}
+                    id={this.props.data[0].id}
                     showDogs={this.props.showDogs}
                   />
                 )}
@@ -100,9 +114,17 @@ class DogDetails extends React.Component {
             </Col>
           </Row>
         </Container>
+
+            </div>
+        );
+    }
+
       </div>
     );
   }
+
 }
+
+   
 
 export default DogDetails;
