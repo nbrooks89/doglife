@@ -2,12 +2,10 @@ import React from "react";
 import DogDetailsCard from "../components/DogDetailsCard";
 import "../pages/DogDetails.css";
 import { Container, Row, Col } from "reactstrap";
-
 import DogCarousel from "../components/DogCarousel";
 
 class DogDetails extends React.Component {
   state = {
-
     data:[]
   };
 
@@ -22,7 +20,7 @@ class DogDetails extends React.Component {
     const data = await response.json();
 
     this.props.setData(data);
-    console.log(data)
+  
   };
 
 
@@ -34,9 +32,6 @@ class DogDetails extends React.Component {
     const dogsWithBreed = this.props.data.filter(
       (data) => data.breeds.length > 0
     );
-    const id = this.props.data.map(
-      data => data.id
-    )
     if (dogsWithBreed.length === 0) return "";
 
     const dog = dogsWithBreed[0];
@@ -45,35 +40,25 @@ class DogDetails extends React.Component {
     const bred_for = dog.breeds[0].bred_for;
     const life_span = dog.breeds[0].life_span;
     const weight = dog.breeds[0].weight.imperial;
- 
-
-   
-
-    
-    return (
+  
+      return (
       <>
         <div className="title">
           <div>{breedName}</div>
-         
-        </div>
+          </div>
         <Container>
           <Row>
             <Col md="7" className="columnDetails1">
               <div>
                 {this.props.data.length === 1 ? (
                   <DogDetailsCard
-                 
-                    imgUrl={this.props.data[0].url}
-
-                    id={this.props.data[0].id}
-     
+                 imgUrl={this.props.data[0].url}
+                 id={this.props.data[0].id}
                   />
-
-                ) : (
+                 ) : (
                   <DogCarousel
                     imgUrls={this.props.data}
-                
-                    showDogs={this.props.showDogs}
+                     showDogs={this.props.showDogs}
                   />
                 )}
               </div>
@@ -95,7 +80,7 @@ class DogDetails extends React.Component {
           </Row>
         </Container>
 
-            </>
+       </>
         );
     }
 

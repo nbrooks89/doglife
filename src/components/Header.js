@@ -11,7 +11,7 @@ import { faPaw } from "@fortawesome/free-solid-svg-icons";
 class Header extends React.Component {
   render() {
     return (
-      <Navbar navbar-expand className="color-nav">
+      <Navbar className="color-nav">
         <Navbar.Brand>
           <Link to="/">
             <span className="Nav-Item "><FontAwesomeIcon icon={faPaw} size="2x" color="black" /></span>

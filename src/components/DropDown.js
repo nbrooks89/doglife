@@ -10,12 +10,11 @@ class DropDown extends React.Component {
     };
   }
   handleChange = async (event) => {
-    console.log("EVENNNNNNT", event.target.name);
     const response = await fetch(
       `https://api.thedogapi.com/v1/images/search?order=ASC&limit=20&breed_id=${event.target.value}`,
       {
         method: "GET",
-        header: "x-api-key: f07ac2f8-e658-414a-aff2-971a64483ffe",
+        header: `x-api-key: ${process.env.REACT_APP_DOG_API_KEY}`,
       }
     );
     const data = await response.json();
@@ -63,7 +62,7 @@ class DropDown extends React.Component {
                   {dog.name}
                 </option>
               ))}
-              <option value="">Durr</option>
+              
             </select>
           </div>
         </div>

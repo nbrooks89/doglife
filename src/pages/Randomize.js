@@ -3,7 +3,6 @@ import DogCard from "../components/DogCard";
 import "../pages/Randomize.css";
 import { Link } from "react-router-dom";
 class Randomize extends React.Component {
-  state = {};
 
   handleGetRequest = async () => {
     const response = await fetch(
@@ -39,7 +38,7 @@ class Randomize extends React.Component {
     return (
       <div>
         <div className="title">
-          <div>Dog</div>
+          <div className="title-inner">Dog</div>
           <div className="shuffleButton" onClick={this.handleOnClick}>
             Shuffle
           </div>

@@ -7,7 +7,6 @@ import { Route} from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
-// import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 library.add( faTimes,faPaw);
