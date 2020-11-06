@@ -36,8 +36,7 @@ class DogCarousel extends React.Component {
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
-
-    this.props.setCurrentImageId(this.props.imgUrls[this.state.activeIndex].id);
+    
   }
 
   previous() {
@@ -62,14 +61,7 @@ class DogCarousel extends React.Component {
 
   render() {
     const items = this.props.imgUrls;
-
- 
-    const { activeIndex } = this.state;
-  
-
-
-    const { activeIndex } = this.state;
-
+     const { activeIndex } = this.state;
     
     const slides = items.map((img) => {
       return (
@@ -79,11 +71,7 @@ class DogCarousel extends React.Component {
           key={img.url}
         >
           <div className="container1">
-
-            <img className="dogcard " src={img.url} alt="specific dog " />
-            
-
-            <img className="dogcard " src={img.url} />
+             <img className="dogcard " src={img.url} alt="specific dog " />
           </div>
         </CarouselItem>
       );

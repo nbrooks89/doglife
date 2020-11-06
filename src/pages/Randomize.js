@@ -10,7 +10,7 @@ class Randomize extends React.Component {
       "https://api.thedogapi.com/v1/images/search?&order=ASC&limit=30",
       {
         method: "GET",
-        header: "x-api-key: f07ac2f8-e658-414a-aff2-971a64483ffe",
+        header: `x-api-key: ${process.env.REACT_APP_DOG_API_KEY}`,
       }
     );
     const data = await response.json();
@@ -23,7 +23,7 @@ class Randomize extends React.Component {
       "https://api.thedogapi.com/v1/images/search?&order=ASC&limit=30",
       {
         method: "GET",
-        header: "x-api-key: f07ac2f8-e658-414a-aff2-971a64483ffe",
+        header: `x-api-key: ${process.env.REACT_APP_DOG_API_KEY}`,
       }
     );
     const data = await response.json();

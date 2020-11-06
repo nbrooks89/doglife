@@ -11,15 +11,12 @@ class DogDetails extends React.Component {
     data:[]
   };
 
-  
-
-
   handleGetRequest = async () => {
     const response = await fetch(
       `https://api.thedogapi.com/v1/images/search?order=ASC&limit=20&breed_id=${this.props.match.params.id}`,
       {
         method: "GET",
-        header: "x-api-key: f07ac2f8-e658-414a-aff2-971a64483ffe",
+        header: `x-api-key: ${process.env.REACT_APP_DOG_API_KEY}`,
       }
     );
     const data = await response.json();
@@ -27,23 +24,6 @@ class DogDetails extends React.Component {
     this.props.setData(data);
     console.log(data)
   };
-
-  
-
-   componentDidMount() {
-    this.handleGetRequest();
-   
-
-    console.log("staatatata", data);
-    this.props.setData(data);
-    this.setState({data:data})
-  };
-
-  
-  componentDidMount() {
-    this.handleGetRequest();
-    console.log()
-   
 
 
  componentDidMount() {
@@ -71,10 +51,10 @@ class DogDetails extends React.Component {
 
     
     return (
-      <div>
+      <>
         <div className="title">
           <div>{breedName}</div>
-          <div>{id}</div>
+         
         </div>
         <Container>
           <Row>
@@ -92,7 +72,7 @@ class DogDetails extends React.Component {
                 ) : (
                   <DogCarousel
                     imgUrls={this.props.data}
-                    id={this.props.data[0].id}
+                
                     showDogs={this.props.showDogs}
                   />
                 )}
@@ -115,13 +95,11 @@ class DogDetails extends React.Component {
           </Row>
         </Container>
 
-            </div>
+            </>
         );
     }
 
-      </div>
-    );
-  }
+
 
 }
 

@@ -1,24 +1,22 @@
 import React from "react";
 import Header from "./components/Header";
 import Randomize from "./pages/Randomize";
-import Favorites from "./pages/Favorites";
 import DogDetails from "./pages/DogDetails";
 import Home from "./pages/Home";
 import { Route} from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHeart, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+// import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-library.add(faHeart, faHeartRegular, faTimes,faPaw);
-// const API_KEY = 'f07ac2f8-e658-414a-aff2-971a64483ffe'
+library.add( faTimes,faPaw);
+
 
 class App extends React.Component {
   state = {
     showDogs: false,
-    data: [],
-    favorites: [],
+    data: []
   };
 
   setData = (data) => {
@@ -47,10 +45,7 @@ class App extends React.Component {
           render={(routerProps) => (
             <DogDetails
               match={routerProps.match}
-              favorites={this.state.favorites}
-              setFavorites={this.setFavorites}
               data={this.state.data}
-
               setData={this.setData}
             />
           )}
@@ -62,21 +57,7 @@ class App extends React.Component {
             <Randomize data={this.state.data} setData={this.setData} />
           )}
         />
-
-        <Route
-          exact
-          path="/Favorites"
-          render={(routerProps) => (
-            <Favorites
-              match={routerProps.match}
-              favorites={this.state.favorites}
-              setFavorites={this.setFavorites}
-              data={this.state.data}
-              setData={this.setData}
-            />
-          )}
-        />
-      </React.Fragment>
+       </React.Fragment>
     );
   }
 }
